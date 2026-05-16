@@ -33,6 +33,37 @@ namespace Torii.Backend.Generated.Model
     public partial class ServerUserSearchRequest : IValidatableObject
     {
         /// <summary>
+        /// Defines Statuses
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusesEnum
+        {
+            /// <summary>
+            /// Enum PendingVerification for value: pending_verification
+            /// </summary>
+            [EnumMember(Value = "pending_verification")]
+            PendingVerification = 1,
+
+            /// <summary>
+            /// Enum Active for value: active
+            /// </summary>
+            [EnumMember(Value = "active")]
+            Active = 2,
+
+            /// <summary>
+            /// Enum Banned for value: banned
+            /// </summary>
+            [EnumMember(Value = "banned")]
+            Banned = 3,
+
+            /// <summary>
+            /// Enum Deleted for value: deleted
+            /// </summary>
+            [EnumMember(Value = "deleted")]
+            Deleted = 4
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ServerUserSearchRequest" /> class.
         /// </summary>
         /// <param name="name">name.</param>
@@ -40,7 +71,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="statuses">statuses.</param>
         /// <param name="createdAfter">createdAfter.</param>
         /// <param name="createdBefore">createdBefore.</param>
-        public ServerUserSearchRequest(Object name = default, Object email = default, Object statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
+        public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
         {
             this.Name = name;
             this.Email = email;
@@ -52,20 +83,20 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = true)]
-        public Object Name { get; set; }
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Email
         /// </summary>
-        [DataMember(Name = "email", EmitDefaultValue = true)]
-        public Object Email { get; set; }
+        [DataMember(Name = "email", EmitDefaultValue = false)]
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Statuses
         /// </summary>
-        [DataMember(Name = "statuses", EmitDefaultValue = true)]
-        public Object Statuses { get; set; }
+        [DataMember(Name = "statuses", EmitDefaultValue = false)]
+        public List<ServerUserSearchRequest.StatusesEnum> Statuses { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAfter

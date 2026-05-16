@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Torii.Backend.Generated.Api;
@@ -67,7 +69,7 @@ public sealed class ToriiClient : IDisposable
         var sessionsApi = new ServerSessionsApi(http, config);
 
         return new ToriiClient(
-            users: new UsersClient(usersApi),
+            users: new UsersClient(usersApi, http, basePath, secretKey),
             sessions: new SessionsClient(sessionsApi),
             ownedHttp: http,
             ownsHttp: owns);
@@ -88,7 +90,17 @@ internal static class ToriiVersion
 public sealed class UsersClient
 {
     private readonly ServerUsersApi _api;
-    internal UsersClient(ServerUsersApi api) { _api = api; }
+    private readonly HttpClient _http;
+    private readonly string _basePath;
+    private readonly string _secretKey;
+
+    internal UsersClient(ServerUsersApi api, HttpClient http, string basePath, string secretKey)
+    {
+        _api = api;
+        _http = http;
+        _basePath = basePath;
+        _secretKey = secretKey;
+    }
 
     /// <summary>
     /// Search users. Optional filters; cursor-paginated. Pass the previous
@@ -104,10 +116,16 @@ public sealed class UsersClient
         DateTimeOffset? createdBefore = null,
         CancellationToken ct = default)
     {
+        List<ServerUserSearchRequest.StatusesEnum>? statusEnums = null;
+        if (statuses is not null)
+        {
+            statusEnums = new List<ServerUserSearchRequest.StatusesEnum>();
+            foreach (var s in statuses) statusEnums.Add(ParseStatus(s));
+        }
         var body = new ServerUserSearchRequest(
-            name: name ?? (object?)null!,
-            email: email ?? (object?)null!,
-            statuses: statuses is null ? null! : (object)new List<string>(statuses),
+            name: name!,
+            email: email!,
+            statuses: statusEnums!,
             createdAfter: createdAfter,
             createdBefore: createdBefore);
 
@@ -126,6 +144,15 @@ public sealed class UsersClient
         }
         catch (ApiException ex) { throw Wrap(ex); }
     }
+
+    private static ServerUserSearchRequest.StatusesEnum ParseStatus(string s) => s switch
+    {
+        "pending_verification" => ServerUserSearchRequest.StatusesEnum.PendingVerification,
+        "active" => ServerUserSearchRequest.StatusesEnum.Active,
+        "banned" => ServerUserSearchRequest.StatusesEnum.Banned,
+        "deleted" => ServerUserSearchRequest.StatusesEnum.Deleted,
+        _ => throw new ArgumentException($"Unknown status: {s}", nameof(s)),
+    };
 
     public async Task<User> GetAsync(Guid userId, CancellationToken ct = default)
     {
@@ -148,18 +175,28 @@ public sealed class UsersClient
 
     public async Task<User> UpdateAsync(Guid userId, UpdateUserInput input, CancellationToken ct = default)
     {
-        // UpdateUserRequest properties are typed `Object` (untyped JSON) so the
-        // server can distinguish "field omitted" from "field set to null". We
-        // only attach properties the caller provided.
-        var req = new UpdateUserRequest();
-        if (input.Name is not null) req.Name = input.Name;
-        if (input.Phone is not null) req.Phone = input.Phone;
-        if (input.AvatarUrl is not null) req.AvatarUrl = input.AvatarUrl;
-        if (input.Locale is not null) req.Locale = input.Locale;
-        if (input.Address is not null) req.Address = input.Address;
-        if (input.DateOfBirth is not null) req.DateOfBirth = input.DateOfBirth.Value.ToString("yyyy-MM-dd");
-        try { return User.FromGenerated(await _api.UpdateUserAsync(userId, req, ct).ConfigureAwait(false)); }
-        catch (ApiException ex) { throw Wrap(ex); }
+        // The generated UpdateUserRequest has typed, non-nullable properties for
+        // string fields. To preserve tri-state semantics (omit / set / explicit null)
+        // we serialise the body by hand and PATCH directly. Server-side fields are
+        // typed and validated; this client just relays the user's intent verbatim.
+        var bodyJson = input.ToJsonBody().ToJsonString();
+        using var req = new HttpRequestMessage(
+            new HttpMethod("PATCH"),
+            $"{_basePath}/api/server/v1/users/{userId}");
+        req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _secretKey);
+        req.Content = new StringContent(bodyJson, Encoding.UTF8, "application/json");
+
+        using var resp = await _http.SendAsync(req, ct).ConfigureAwait(false);
+        var respBody = await resp.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+        if (!resp.IsSuccessStatusCode)
+        {
+            // Mirror the shape of ApiException so error handling stays uniform.
+            var apiEx = new ApiException((int)resp.StatusCode, $"Error calling UpdateUser: {respBody}", respBody);
+            throw Wrap(apiEx);
+        }
+        var parsed = Newtonsoft.Json.JsonConvert.DeserializeObject<UserResponse>(respBody)
+            ?? throw new InvalidOperationException("UpdateUser returned an empty body");
+        return User.FromGenerated(parsed);
     }
 
     public async Task DeleteAsync(Guid userId, CancellationToken ct = default)

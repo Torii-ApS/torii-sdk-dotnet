@@ -91,11 +91,4 @@ public sealed record CreateUserInput(
     string? Address = null,
     DateOnly? DateOfBirth = null);
 
-/// <summary>Input for <c>Users.UpdateAsync</c>. Only non-null fields are sent in the PATCH body.</summary>
-public sealed record UpdateUserInput(
-    string? Name = null,
-    string? Phone = null,
-    string? AvatarUrl = null,
-    string? Locale = null,
-    string? Address = null,
-    DateOnly? DateOfBirth = null);
+// UpdateUserInput lives in UpdateUserInput.cs (uses Patch<T> tri-state wrappers).

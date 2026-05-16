@@ -33,6 +33,31 @@ namespace Torii.Backend.Generated.Model
     public partial class UpdateUserRequest : IValidatableObject
     {
         /// <summary>
+        /// Defines Locale
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LocaleEnum
+        {
+            /// <summary>
+            /// Enum En for value: en
+            /// </summary>
+            [EnumMember(Value = "en")]
+            En = 1,
+
+            /// <summary>
+            /// Enum Da for value: da
+            /// </summary>
+            [EnumMember(Value = "da")]
+            Da = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Locale
+        /// </summary>
+        [DataMember(Name = "locale", EmitDefaultValue = false)]
+        public LocaleEnum? Locale { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdateUserRequest" /> class.
         /// </summary>
         /// <param name="name">name.</param>
@@ -41,7 +66,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="locale">locale.</param>
         /// <param name="address">address.</param>
         /// <param name="dateOfBirth">dateOfBirth.</param>
-        public UpdateUserRequest(Object name = default, Object phone = default, Object avatarUrl = default, Object locale = default, Object address = default, Object dateOfBirth = default)
+        public UpdateUserRequest(string name = default, string phone = default, string avatarUrl = default, LocaleEnum? locale = default, string address = default, DateOnly dateOfBirth = default)
         {
             this.Name = name;
             this.Phone = phone;
@@ -54,38 +79,32 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = true)]
-        public Object Name { get; set; }
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Phone
         /// </summary>
-        [DataMember(Name = "phone", EmitDefaultValue = true)]
-        public Object Phone { get; set; }
+        [DataMember(Name = "phone", EmitDefaultValue = false)]
+        public string Phone { get; set; }
 
         /// <summary>
         /// Gets or Sets AvatarUrl
         /// </summary>
-        [DataMember(Name = "avatarUrl", EmitDefaultValue = true)]
-        public Object AvatarUrl { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Locale
-        /// </summary>
-        [DataMember(Name = "locale", EmitDefaultValue = true)]
-        public Object Locale { get; set; }
+        [DataMember(Name = "avatarUrl", EmitDefaultValue = false)]
+        public string AvatarUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Address
         /// </summary>
-        [DataMember(Name = "address", EmitDefaultValue = true)]
-        public Object Address { get; set; }
+        [DataMember(Name = "address", EmitDefaultValue = false)]
+        public string Address { get; set; }
 
         /// <summary>
         /// Gets or Sets DateOfBirth
         /// </summary>
-        [DataMember(Name = "dateOfBirth", EmitDefaultValue = true)]
-        public Object DateOfBirth { get; set; }
+        [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
+        public DateOnly DateOfBirth { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
