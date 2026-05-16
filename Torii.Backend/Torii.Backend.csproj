@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);1591;1573;1570;1572;1574;1587;CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8619;CS8625;CS8632;CS8714;CS8765;CS8767;CS8769;CS0168;CS0219;CS0414</NoWarn>
+
+    <!-- Package metadata -->
+    <IsPackable>true</IsPackable>
+    <PackageId>Torii.Backend</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>torii</Authors>
+    <Company>torii</Company>
+    <Description>Backend SDK for torii — verify end-user JWTs without a per-request round trip, manage users from your .NET server.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/GOOD-Code-ApS/torii</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GOOD-Code-ApS/torii</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>torii;auth;jwt;oidc;sdk</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RootNamespace>Torii.Backend</RootNamespace>
+    <AssemblyName>Torii.Backend</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- JWT / JWKS verification -->
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.0" />
+
+    <!-- Generated REST client deps -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
+    <PackageReference Include="Polly" Version="8.4.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

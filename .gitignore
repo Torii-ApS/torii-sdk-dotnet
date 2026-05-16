@@ -1,0 +1,16 @@
+# Build outputs
+bin/
+obj/
+*.nupkg
+*.snupkg
+
+# IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.userosscache
+*.suo
+
+# OS
+.DS_Store

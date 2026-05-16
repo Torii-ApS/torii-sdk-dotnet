@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <IsPackable>true</IsPackable>
+    <PackageId>Torii.Backend.AspNetCore</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>torii</Authors>
+    <Company>torii</Company>
+    <Description>ASP.NET Core authentication handler for the torii backend SDK.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/GOOD-Code-ApS/torii</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GOOD-Code-ApS/torii</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>torii;auth;jwt;aspnetcore;sdk</PackageTags>
+    <RootNamespace>Torii.Backend.AspNetCore</RootNamespace>
+    <AssemblyName>Torii.Backend.AspNetCore</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Torii.Backend\Torii.Backend.csproj" />
+  </ItemGroup>
+
+</Project>
