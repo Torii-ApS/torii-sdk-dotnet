@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// UserSessionResponse
+    /// An active end-user session in your environment.
     /// </summary>
     [DataContract(Name = "UserSessionResponse")]
     public partial class UserSessionResponse : IValidatableObject
@@ -40,14 +40,14 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserSessionResponse" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="userId">userId (required).</param>
-        /// <param name="environmentId">environmentId (required).</param>
-        /// <param name="userAgent">userAgent.</param>
-        /// <param name="ipAddress">ipAddress.</param>
-        /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="expiresAt">expiresAt (required).</param>
-        /// <param name="lastUsedAt">lastUsedAt (required).</param>
+        /// <param name="id">Unique identifier for this session. (required).</param>
+        /// <param name="userId">Identifier of the end-user this session belongs to. (required).</param>
+        /// <param name="environmentId">Identifier of the environment this session belongs to. (required).</param>
+        /// <param name="userAgent">Raw User-Agent string captured when the session was created..</param>
+        /// <param name="ipAddress">IP address captured when the session was created..</param>
+        /// <param name="createdAt">When this session was created (ISO-8601 UTC). (required).</param>
+        /// <param name="expiresAt">When this session expires (ISO-8601 UTC). (required).</param>
+        /// <param name="lastUsedAt">When this session was last seen by the API (ISO-8601 UTC). (required).</param>
         public UserSessionResponse(Guid id = default, Guid userId = default, Guid environmentId = default, string userAgent = default, string ipAddress = default, DateTimeOffset createdAt = default, DateTimeOffset expiresAt = default, DateTimeOffset lastUsedAt = default)
         {
             this.Id = id;
@@ -61,50 +61,82 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Unique identifier for this session.
         /// </summary>
+        /// <value>Unique identifier for this session.</value>
+        /*
+        <example>01931a74-1234-7000-8000-000000000000</example>
+        */
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets UserId
+        /// Identifier of the end-user this session belongs to.
         /// </summary>
+        /// <value>Identifier of the end-user this session belongs to.</value>
+        /*
+        <example>01931a73-8b00-7000-8000-000000000000</example>
+        */
         [DataMember(Name = "userId", IsRequired = true, EmitDefaultValue = true)]
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// Gets or Sets EnvironmentId
+        /// Identifier of the environment this session belongs to.
         /// </summary>
+        /// <value>Identifier of the environment this session belongs to.</value>
+        /*
+        <example>01931a72-0000-7000-8000-000000000000</example>
+        */
         [DataMember(Name = "environmentId", IsRequired = true, EmitDefaultValue = true)]
         public Guid EnvironmentId { get; set; }
 
         /// <summary>
-        /// Gets or Sets UserAgent
+        /// Raw User-Agent string captured when the session was created.
         /// </summary>
+        /// <value>Raw User-Agent string captured when the session was created.</value>
+        /*
+        <example>Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_0) AppleWebKit/537.36</example>
+        */
         [DataMember(Name = "userAgent", EmitDefaultValue = true)]
         public string UserAgent { get; set; }
 
         /// <summary>
-        /// Gets or Sets IpAddress
+        /// IP address captured when the session was created.
         /// </summary>
+        /// <value>IP address captured when the session was created.</value>
+        /*
+        <example>203.0.113.42</example>
+        */
         [DataMember(Name = "ipAddress", EmitDefaultValue = true)]
         public string IpAddress { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// When this session was created (ISO-8601 UTC).
         /// </summary>
+        /// <value>When this session was created (ISO-8601 UTC).</value>
+        /*
+        <example>2026-05-16T09:30:00Z</example>
+        */
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExpiresAt
+        /// When this session expires (ISO-8601 UTC).
         /// </summary>
+        /// <value>When this session expires (ISO-8601 UTC).</value>
+        /*
+        <example>2026-05-23T09:30:00Z</example>
+        */
         [DataMember(Name = "expiresAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTimeOffset ExpiresAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets LastUsedAt
+        /// When this session was last seen by the API (ISO-8601 UTC).
         /// </summary>
+        /// <value>When this session was last seen by the API (ISO-8601 UTC).</value>
+        /*
+        <example>2026-05-16T11:42:00Z</example>
+        */
         [DataMember(Name = "lastUsedAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTimeOffset LastUsedAt { get; set; }
 

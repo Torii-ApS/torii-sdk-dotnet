@@ -27,14 +27,15 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// UpdateUserRequest
+    /// PATCH body for updating an end-user. Every field is tri-state: omit the key entirely to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
     /// </summary>
     [DataContract(Name = "UpdateUserRequest")]
     public partial class UpdateUserRequest : IValidatableObject
     {
         /// <summary>
-        /// Defines Locale
+        /// New preferred locale. Send null to clear; omit to leave unchanged.
         /// </summary>
+        /// <value>New preferred locale. Send null to clear; omit to leave unchanged.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LocaleEnum
         {
@@ -53,20 +54,21 @@ namespace Torii.Backend.Generated.Model
 
 
         /// <summary>
-        /// Gets or Sets Locale
+        /// New preferred locale. Send null to clear; omit to leave unchanged.
         /// </summary>
-        [DataMember(Name = "locale", EmitDefaultValue = false)]
+        /// <value>New preferred locale. Send null to clear; omit to leave unchanged.</value>
+        [DataMember(Name = "locale", EmitDefaultValue = true)]
         public LocaleEnum? Locale { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateUserRequest" /> class.
         /// </summary>
-        /// <param name="name">name.</param>
-        /// <param name="phone">phone.</param>
-        /// <param name="avatarUrl">avatarUrl.</param>
-        /// <param name="locale">locale.</param>
-        /// <param name="address">address.</param>
-        /// <param name="dateOfBirth">dateOfBirth.</param>
-        public UpdateUserRequest(string name = default, string phone = default, string avatarUrl = default, LocaleEnum? locale = default, string address = default, DateOnly dateOfBirth = default)
+        /// <param name="name">New display name. Send null to clear; omit to leave unchanged..</param>
+        /// <param name="phone">New phone number. Send null to clear; omit to leave unchanged..</param>
+        /// <param name="avatarUrl">New avatar URL. Send null to clear; omit to leave unchanged..</param>
+        /// <param name="locale">New preferred locale. Send null to clear; omit to leave unchanged..</param>
+        /// <param name="address">New postal address. Send null to clear; omit to leave unchanged..</param>
+        /// <param name="dateOfBirth">New date of birth (YYYY-MM-DD). Send null to clear; omit to leave unchanged..</param>
+        public UpdateUserRequest(string name = default, string phone = default, string avatarUrl = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default)
         {
             this.Name = name;
             this.Phone = phone;
@@ -77,34 +79,54 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// New display name. Send null to clear; omit to leave unchanged.
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        /// <value>New display name. Send null to clear; omit to leave unchanged.</value>
+        /*
+        <example>Ada Lovelace</example>
+        */
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// New phone number. Send null to clear; omit to leave unchanged.
         /// </summary>
-        [DataMember(Name = "phone", EmitDefaultValue = false)]
+        /// <value>New phone number. Send null to clear; omit to leave unchanged.</value>
+        /*
+        <example>+15555550100</example>
+        */
+        [DataMember(Name = "phone", EmitDefaultValue = true)]
         public string Phone { get; set; }
 
         /// <summary>
-        /// Gets or Sets AvatarUrl
+        /// New avatar URL. Send null to clear; omit to leave unchanged.
         /// </summary>
-        [DataMember(Name = "avatarUrl", EmitDefaultValue = false)]
+        /// <value>New avatar URL. Send null to clear; omit to leave unchanged.</value>
+        /*
+        <example>https://cdn.example.com/avatars/ada.png</example>
+        */
+        [DataMember(Name = "avatarUrl", EmitDefaultValue = true)]
         public string AvatarUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// New postal address. Send null to clear; omit to leave unchanged.
         /// </summary>
-        [DataMember(Name = "address", EmitDefaultValue = false)]
+        /// <value>New postal address. Send null to clear; omit to leave unchanged.</value>
+        /*
+        <example>221B Baker Street, London</example>
+        */
+        [DataMember(Name = "address", EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets DateOfBirth
+        /// New date of birth (YYYY-MM-DD). Send null to clear; omit to leave unchanged.
         /// </summary>
-        [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
-        public DateOnly DateOfBirth { get; set; }
+        /// <value>New date of birth (YYYY-MM-DD). Send null to clear; omit to leave unchanged.</value>
+        /*
+        <example>1815-12-10</example>
+        */
+        [DataMember(Name = "dateOfBirth", EmitDefaultValue = true)]
+        public DateOnly? DateOfBirth { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

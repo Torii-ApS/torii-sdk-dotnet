@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// CursorPageResponseUserResponse
+    /// A single page of results in a cursor-paginated list. Pass &#x60;nextCursor&#x60; as the &#x60;cursor&#x60; query parameter to fetch the following page.
     /// </summary>
     [DataContract(Name = "CursorPageResponseUserResponse")]
     public partial class CursorPageResponseUserResponse : IValidatableObject
@@ -40,9 +40,9 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CursorPageResponseUserResponse" /> class.
         /// </summary>
-        /// <param name="items">items (required).</param>
-        /// <param name="nextCursor">nextCursor.</param>
-        /// <param name="hasMore">hasMore (required).</param>
+        /// <param name="items">Items in this page, in stable order. (required).</param>
+        /// <param name="nextCursor">Cursor to pass to fetch the next page. Null when this is the last page..</param>
+        /// <param name="hasMore">True if more pages are available (equivalent to &#x60;nextCursor !&#x3D; null&#x60;). (required).</param>
         public CursorPageResponseUserResponse(List<UserResponse> items = default, Guid? nextCursor = default, bool hasMore = default)
         {
             // to ensure "items" is required (not null)
@@ -56,20 +56,29 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Gets or Sets Items
+        /// Items in this page, in stable order.
         /// </summary>
+        /// <value>Items in this page, in stable order.</value>
         [DataMember(Name = "items", IsRequired = true, EmitDefaultValue = true)]
         public List<UserResponse> Items { get; set; }
 
         /// <summary>
-        /// Gets or Sets NextCursor
+        /// Cursor to pass to fetch the next page. Null when this is the last page.
         /// </summary>
+        /// <value>Cursor to pass to fetch the next page. Null when this is the last page.</value>
+        /*
+        <example>01931a73-8b00-7000-8000-000000000000</example>
+        */
         [DataMember(Name = "nextCursor", EmitDefaultValue = true)]
         public Guid? NextCursor { get; set; }
 
         /// <summary>
-        /// Gets or Sets HasMore
+        /// True if more pages are available (equivalent to &#x60;nextCursor !&#x3D; null&#x60;).
         /// </summary>
+        /// <value>True if more pages are available (equivalent to &#x60;nextCursor !&#x3D; null&#x60;).</value>
+        /*
+        <example>true</example>
+        */
         [DataMember(Name = "hasMore", IsRequired = true, EmitDefaultValue = true)]
         public bool HasMore { get; set; }
 

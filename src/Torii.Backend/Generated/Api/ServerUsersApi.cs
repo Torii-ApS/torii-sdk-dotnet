@@ -30,8 +30,11 @@ namespace Torii.Backend.Generated.Api
         /// <summary>
         /// Ban user
         /// </summary>
+        /// <remarks>
+        /// Marks the user as banned and revokes all their active sessions.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <returns>UserResponse</returns>
         UserResponse BanUser(Guid userId);
 
@@ -39,15 +42,18 @@ namespace Torii.Backend.Generated.Api
         /// Ban user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the user as banned and revokes all their active sessions.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <returns>ApiResponse of UserResponse</returns>
         ApiResponse<UserResponse> BanUserWithHttpInfo(Guid userId);
         /// <summary>
         /// Create user
         /// </summary>
+        /// <remarks>
+        /// Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
         /// <returns>UserResponse</returns>
@@ -57,7 +63,7 @@ namespace Torii.Backend.Generated.Api
         /// Create user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -66,8 +72,11 @@ namespace Torii.Backend.Generated.Api
         /// <summary>
         /// Delete user
         /// </summary>
+        /// <remarks>
+        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <returns></returns>
         void DeleteUser(Guid userId);
 
@@ -75,17 +84,20 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteUserWithHttpInfo(Guid userId);
         /// <summary>
         /// Get user
         /// </summary>
+        /// <remarks>
+        /// Returns the full profile for one end-user.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <returns>UserResponse</returns>
         UserResponse GetUser(Guid userId);
 
@@ -93,18 +105,21 @@ namespace Torii.Backend.Generated.Api
         /// Get user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the full profile for one end-user.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <returns>ApiResponse of UserResponse</returns>
         ApiResponse<UserResponse> GetUserWithHttpInfo(Guid userId);
         /// <summary>
         /// Search users
         /// </summary>
+        /// <remarks>
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <returns>CursorPageResponseUserResponse</returns>
         CursorPageResponseUserResponse SearchUsers(int? limit = default, Guid? cursor = default, ServerUserSearchRequest? serverUserSearchRequest = default);
@@ -113,19 +128,22 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <returns>ApiResponse of CursorPageResponseUserResponse</returns>
         ApiResponse<CursorPageResponseUserResponse> SearchUsersWithHttpInfo(int? limit = default, Guid? cursor = default, ServerUserSearchRequest? serverUserSearchRequest = default);
         /// <summary>
         /// Unban user
         /// </summary>
+        /// <remarks>
+        /// Reverses a previous ban. The user can sign in again on next request.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <returns>UserResponse</returns>
         UserResponse UnbanUser(Guid userId);
 
@@ -133,17 +151,20 @@ namespace Torii.Backend.Generated.Api
         /// Unban user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reverses a previous ban. The user can sign in again on next request.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <returns>ApiResponse of UserResponse</returns>
         ApiResponse<UserResponse> UnbanUserWithHttpInfo(Guid userId);
         /// <summary>
         /// Update user
         /// </summary>
+        /// <remarks>
+        /// Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <returns>UserResponse</returns>
         UserResponse UpdateUser(Guid userId, UpdateUserRequest updateUserRequest);
@@ -152,10 +173,10 @@ namespace Torii.Backend.Generated.Api
         /// Update user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <returns>ApiResponse of UserResponse</returns>
         ApiResponse<UserResponse> UpdateUserWithHttpInfo(Guid userId, UpdateUserRequest updateUserRequest);
@@ -172,10 +193,10 @@ namespace Torii.Backend.Generated.Api
         /// Ban user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the user as banned and revokes all their active sessions.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
         System.Threading.Tasks.Task<UserResponse> BanUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -184,10 +205,10 @@ namespace Torii.Backend.Generated.Api
         /// Ban user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Marks the user as banned and revokes all their active sessions.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserResponse>> BanUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -195,7 +216,7 @@ namespace Torii.Backend.Generated.Api
         /// Create user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -207,7 +228,7 @@ namespace Torii.Backend.Generated.Api
         /// Create user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -218,10 +239,10 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task DeleteUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -230,10 +251,10 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -241,10 +262,10 @@ namespace Torii.Backend.Generated.Api
         /// Get user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the full profile for one end-user.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
         System.Threading.Tasks.Task<UserResponse> GetUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -253,10 +274,10 @@ namespace Torii.Backend.Generated.Api
         /// Get user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns the full profile for one end-user.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserResponse>> GetUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -264,11 +285,11 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CursorPageResponseUserResponse</returns>
@@ -278,11 +299,11 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CursorPageResponseUserResponse)</returns>
@@ -291,10 +312,10 @@ namespace Torii.Backend.Generated.Api
         /// Unban user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reverses a previous ban. The user can sign in again on next request.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
         System.Threading.Tasks.Task<UserResponse> UnbanUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -303,10 +324,10 @@ namespace Torii.Backend.Generated.Api
         /// Unban user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Reverses a previous ban. The user can sign in again on next request.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserResponse>> UnbanUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -314,10 +335,10 @@ namespace Torii.Backend.Generated.Api
         /// Update user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
@@ -327,10 +348,10 @@ namespace Torii.Backend.Generated.Api
         /// Update user
         /// </summary>
         /// <remarks>
-        /// 
+        /// Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
@@ -549,10 +570,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Ban user 
+        /// Ban user Marks the user as banned and revokes all their active sessions.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <returns>UserResponse</returns>
         public UserResponse BanUser(Guid userId)
         {
@@ -561,10 +582,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Ban user 
+        /// Ban user Marks the user as banned and revokes all their active sessions.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <returns>ApiResponse of UserResponse</returns>
         public Torii.Backend.Generated.Client.ApiResponse<UserResponse> BanUserWithHttpInfo(Guid userId)
         {
@@ -575,7 +596,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -600,10 +622,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Ban user 
+        /// Ban user Marks the user as banned and revokes all their active sessions.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
         public async System.Threading.Tasks.Task<UserResponse> BanUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -613,10 +635,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Ban user 
+        /// Ban user Marks the user as banned and revokes all their active sessions.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to ban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<UserResponse>> BanUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -629,7 +651,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 
@@ -656,7 +679,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Create user 
+        /// Create user Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -668,7 +691,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Create user 
+        /// Create user Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -687,7 +710,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -712,7 +736,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Create user 
+        /// Create user Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -725,7 +749,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Create user 
+        /// Create user Creates an end-user in your environment. All body fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest"></param>
@@ -746,7 +770,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 
@@ -773,10 +798,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user 
+        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <returns></returns>
         public void DeleteUser(Guid userId)
         {
@@ -784,10 +809,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user 
+        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Torii.Backend.Generated.Client.ApiResponse<Object> DeleteUserWithHttpInfo(Guid userId)
         {
@@ -798,6 +823,7 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -822,10 +848,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user 
+        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task DeleteUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -834,10 +860,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user 
+        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to delete.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<Object>> DeleteUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -850,6 +876,7 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/problem+json"
             };
 
 
@@ -876,10 +903,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Get user 
+        /// Get user Returns the full profile for one end-user.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <returns>UserResponse</returns>
         public UserResponse GetUser(Guid userId)
         {
@@ -888,10 +915,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Get user 
+        /// Get user Returns the full profile for one end-user.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <returns>ApiResponse of UserResponse</returns>
         public Torii.Backend.Generated.Client.ApiResponse<UserResponse> GetUserWithHttpInfo(Guid userId)
         {
@@ -902,7 +929,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -927,10 +955,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Get user 
+        /// Get user Returns the full profile for one end-user.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
         public async System.Threading.Tasks.Task<UserResponse> GetUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -940,10 +968,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Get user 
+        /// Get user Returns the full profile for one end-user.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to fetch.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<UserResponse>> GetUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -956,7 +984,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 
@@ -983,11 +1012,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users 
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <returns>CursorPageResponseUserResponse</returns>
         public CursorPageResponseUserResponse SearchUsers(int? limit = default, Guid? cursor = default, ServerUserSearchRequest? serverUserSearchRequest = default)
@@ -997,11 +1026,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users 
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <returns>ApiResponse of CursorPageResponseUserResponse</returns>
         public Torii.Backend.Generated.Client.ApiResponse<CursorPageResponseUserResponse> SearchUsersWithHttpInfo(int? limit = default, Guid? cursor = default, ServerUserSearchRequest? serverUserSearchRequest = default)
@@ -1014,7 +1043,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1047,11 +1077,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users 
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CursorPageResponseUserResponse</returns>
@@ -1062,11 +1092,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users 
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="cursor"> (optional)</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
         /// <param name="serverUserSearchRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CursorPageResponseUserResponse)</returns>
@@ -1081,7 +1111,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 
@@ -1116,10 +1147,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Unban user 
+        /// Unban user Reverses a previous ban. The user can sign in again on next request.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <returns>UserResponse</returns>
         public UserResponse UnbanUser(Guid userId)
         {
@@ -1128,10 +1159,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Unban user 
+        /// Unban user Reverses a previous ban. The user can sign in again on next request.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <returns>ApiResponse of UserResponse</returns>
         public Torii.Backend.Generated.Client.ApiResponse<UserResponse> UnbanUserWithHttpInfo(Guid userId)
         {
@@ -1142,7 +1173,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1167,10 +1199,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Unban user 
+        /// Unban user Reverses a previous ban. The user can sign in again on next request.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
         public async System.Threading.Tasks.Task<UserResponse> UnbanUserAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -1180,10 +1212,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Unban user 
+        /// Unban user Reverses a previous ban. The user can sign in again on next request.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to unban.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<UserResponse>> UnbanUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -1196,7 +1228,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 
@@ -1223,10 +1256,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user 
+        /// Update user Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <returns>UserResponse</returns>
         public UserResponse UpdateUser(Guid userId, UpdateUserRequest updateUserRequest)
@@ -1236,10 +1269,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user 
+        /// Update user Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <returns>ApiResponse of UserResponse</returns>
         public Torii.Backend.Generated.Client.ApiResponse<UserResponse> UpdateUserWithHttpInfo(Guid userId, UpdateUserRequest updateUserRequest)
@@ -1256,7 +1289,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -1282,10 +1316,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user 
+        /// Update user Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserResponse</returns>
@@ -1296,10 +1330,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user 
+        /// Update user Partial update with tri-state PATCH semantics. Every field in &#x60;UpdateUserRequest&#x60; is tri-state: omit the key to leave the field unchanged, send a non-null value to set it, or send JSON null to clear it.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user to update.</param>
         /// <param name="updateUserRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserResponse)</returns>
@@ -1318,7 +1352,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 

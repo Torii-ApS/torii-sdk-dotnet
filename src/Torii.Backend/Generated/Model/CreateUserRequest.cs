@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// CreateUserRequest
+    /// Request body for creating an end-user in your environment. All fields are optional; supply at minimum an email if you want the user to be able to sign in via email + password.
     /// </summary>
     [DataContract(Name = "CreateUserRequest")]
     public partial class CreateUserRequest : IValidatableObject
@@ -35,12 +35,12 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateUserRequest" /> class.
         /// </summary>
-        /// <param name="email">email.</param>
-        /// <param name="password">password.</param>
-        /// <param name="name">name.</param>
-        /// <param name="phone">phone.</param>
-        /// <param name="address">address.</param>
-        /// <param name="dateOfBirth">dateOfBirth.</param>
+        /// <param name="email">Primary email for the new user. If omitted, the user is created without a sign-in identity..</param>
+        /// <param name="password">Initial password. Subject to the environment&#39;s password policy. Omit to create a passwordless user (e.g. social-only)..</param>
+        /// <param name="name">Display name to seed on the profile..</param>
+        /// <param name="phone">Phone number to seed on the profile..</param>
+        /// <param name="address">Postal address to seed on the profile..</param>
+        /// <param name="dateOfBirth">Date of birth in ISO-8601 (YYYY-MM-DD)..</param>
         public CreateUserRequest(string email = default, string password = default, string name = default, string phone = default, string address = default, DateOnly? dateOfBirth = default)
         {
             this.Email = email;
@@ -52,38 +52,62 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// Primary email for the new user. If omitted, the user is created without a sign-in identity.
         /// </summary>
+        /// <value>Primary email for the new user. If omitted, the user is created without a sign-in identity.</value>
+        /*
+        <example>ada@example.com</example>
+        */
         [DataMember(Name = "email", EmitDefaultValue = true)]
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Password
+        /// Initial password. Subject to the environment&#39;s password policy. Omit to create a passwordless user (e.g. social-only).
         /// </summary>
+        /// <value>Initial password. Subject to the environment&#39;s password policy. Omit to create a passwordless user (e.g. social-only).</value>
+        /*
+        <example>correct horse battery staple</example>
+        */
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Display name to seed on the profile.
         /// </summary>
+        /// <value>Display name to seed on the profile.</value>
+        /*
+        <example>Ada Lovelace</example>
+        */
         [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// Phone number to seed on the profile.
         /// </summary>
+        /// <value>Phone number to seed on the profile.</value>
+        /*
+        <example>+15555550100</example>
+        */
         [DataMember(Name = "phone", EmitDefaultValue = true)]
         public string Phone { get; set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// Postal address to seed on the profile.
         /// </summary>
+        /// <value>Postal address to seed on the profile.</value>
+        /*
+        <example>221B Baker Street, London</example>
+        */
         [DataMember(Name = "address", EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets DateOfBirth
+        /// Date of birth in ISO-8601 (YYYY-MM-DD).
         /// </summary>
+        /// <value>Date of birth in ISO-8601 (YYYY-MM-DD).</value>
+        /*
+        <example>1815-12-10</example>
+        */
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = true)]
         public DateOnly? DateOfBirth { get; set; }
 

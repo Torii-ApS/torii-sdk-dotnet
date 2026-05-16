@@ -27,14 +27,15 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// UserResponse
+    /// An end-user belonging to one of your environments.
     /// </summary>
     [DataContract(Name = "UserResponse")]
     public partial class UserResponse : IValidatableObject
     {
         /// <summary>
-        /// Defines Locale
+        /// Preferred locale for emails and UI messages.
         /// </summary>
+        /// <value>Preferred locale for emails and UI messages.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LocaleEnum
         {
@@ -53,13 +54,15 @@ namespace Torii.Backend.Generated.Model
 
 
         /// <summary>
-        /// Gets or Sets Locale
+        /// Preferred locale for emails and UI messages.
         /// </summary>
+        /// <value>Preferred locale for emails and UI messages.</value>
         [DataMember(Name = "locale", EmitDefaultValue = true)]
         public LocaleEnum? Locale { get; set; }
         /// <summary>
-        /// Defines Status
+        /// Lifecycle status of the user (e.g. active, banned).
         /// </summary>
+        /// <value>Lifecycle status of the user (e.g. active, banned).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -90,8 +93,9 @@ namespace Torii.Backend.Generated.Model
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Lifecycle status of the user (e.g. active, banned).
         /// </summary>
+        /// <value>Lifecycle status of the user (e.g. active, banned).</value>
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
         public StatusEnum Status { get; set; }
         /// <summary>
@@ -102,19 +106,19 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserResponse" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="environmentId">environmentId (required).</param>
-        /// <param name="name">name.</param>
-        /// <param name="phone">phone.</param>
-        /// <param name="avatarUrl">avatarUrl.</param>
-        /// <param name="locale">locale.</param>
-        /// <param name="address">address.</param>
-        /// <param name="dateOfBirth">dateOfBirth.</param>
-        /// <param name="status">status (required).</param>
-        /// <param name="createdAt">createdAt (required).</param>
-        /// <param name="updatedAt">updatedAt (required).</param>
-        /// <param name="email">email.</param>
-        /// <param name="deletedAt">deletedAt.</param>
+        /// <param name="id">Unique identifier for this user. (required).</param>
+        /// <param name="environmentId">Identifier of the environment this user belongs to. (required).</param>
+        /// <param name="name">Full name on the profile, if any..</param>
+        /// <param name="phone">Phone number on the profile, if any. Not guaranteed to be verified..</param>
+        /// <param name="avatarUrl">URL of the user&#39;s avatar image, if any..</param>
+        /// <param name="locale">Preferred locale for emails and UI messages..</param>
+        /// <param name="address">Free-form address string, if provided..</param>
+        /// <param name="dateOfBirth">Date of birth in ISO-8601 (YYYY-MM-DD), if provided..</param>
+        /// <param name="status">Lifecycle status of the user (e.g. active, banned). (required).</param>
+        /// <param name="createdAt">When this user was created (ISO-8601 UTC). (required).</param>
+        /// <param name="updatedAt">When this user was last modified (ISO-8601 UTC). (required).</param>
+        /// <param name="email">Primary email on the profile, if any. Not guaranteed to be verified..</param>
+        /// <param name="deletedAt">When this user was deleted, if soft-deleted. Null for active users..</param>
         public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, string avatarUrl = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTimeOffset createdAt = default, DateTimeOffset updatedAt = default, string email = default, DateTimeOffset? deletedAt = default)
         {
             this.Id = id;
@@ -133,68 +137,112 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Unique identifier for this user.
         /// </summary>
+        /// <value>Unique identifier for this user.</value>
+        /*
+        <example>01931a73-8b00-7000-8000-000000000000</example>
+        */
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets EnvironmentId
+        /// Identifier of the environment this user belongs to.
         /// </summary>
+        /// <value>Identifier of the environment this user belongs to.</value>
+        /*
+        <example>01931a72-0000-7000-8000-000000000000</example>
+        */
         [DataMember(Name = "environmentId", IsRequired = true, EmitDefaultValue = true)]
         public Guid EnvironmentId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Full name on the profile, if any.
         /// </summary>
+        /// <value>Full name on the profile, if any.</value>
+        /*
+        <example>Ada Lovelace</example>
+        */
         [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// Phone number on the profile, if any. Not guaranteed to be verified.
         /// </summary>
+        /// <value>Phone number on the profile, if any. Not guaranteed to be verified.</value>
+        /*
+        <example>+15555550100</example>
+        */
         [DataMember(Name = "phone", EmitDefaultValue = true)]
         public string Phone { get; set; }
 
         /// <summary>
-        /// Gets or Sets AvatarUrl
+        /// URL of the user&#39;s avatar image, if any.
         /// </summary>
+        /// <value>URL of the user&#39;s avatar image, if any.</value>
+        /*
+        <example>https://cdn.example.com/avatars/ada.png</example>
+        */
         [DataMember(Name = "avatarUrl", EmitDefaultValue = true)]
         public string AvatarUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// Free-form address string, if provided.
         /// </summary>
+        /// <value>Free-form address string, if provided.</value>
+        /*
+        <example>221B Baker Street, London</example>
+        */
         [DataMember(Name = "address", EmitDefaultValue = true)]
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets DateOfBirth
+        /// Date of birth in ISO-8601 (YYYY-MM-DD), if provided.
         /// </summary>
+        /// <value>Date of birth in ISO-8601 (YYYY-MM-DD), if provided.</value>
+        /*
+        <example>1815-12-10</example>
+        */
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = true)]
         public DateOnly? DateOfBirth { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// When this user was created (ISO-8601 UTC).
         /// </summary>
+        /// <value>When this user was created (ISO-8601 UTC).</value>
+        /*
+        <example>2026-05-16T09:30:00Z</example>
+        */
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpdatedAt
+        /// When this user was last modified (ISO-8601 UTC).
         /// </summary>
+        /// <value>When this user was last modified (ISO-8601 UTC).</value>
+        /*
+        <example>2026-05-16T10:00:00Z</example>
+        */
         [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTimeOffset UpdatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// Primary email on the profile, if any. Not guaranteed to be verified.
         /// </summary>
+        /// <value>Primary email on the profile, if any. Not guaranteed to be verified.</value>
+        /*
+        <example>ada@example.com</example>
+        */
         [DataMember(Name = "email", EmitDefaultValue = true)]
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets DeletedAt
+        /// When this user was deleted, if soft-deleted. Null for active users.
         /// </summary>
+        /// <value>When this user was deleted, if soft-deleted. Null for active users.</value>
+        /*
+        <example>2026-05-20T12:00:00Z</example>
+        */
         [DataMember(Name = "deletedAt", EmitDefaultValue = true)]
         public DateTimeOffset? DeletedAt { get; set; }
 

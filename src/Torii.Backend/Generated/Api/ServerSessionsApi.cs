@@ -30,8 +30,11 @@ namespace Torii.Backend.Generated.Api
         /// <summary>
         /// List user sessions
         /// </summary>
+        /// <remarks>
+        /// Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <returns>List&lt;UserSessionResponse&gt;</returns>
         List<UserSessionResponse> ListSessions(Guid userId);
 
@@ -39,17 +42,20 @@ namespace Torii.Backend.Generated.Api
         /// List user sessions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <returns>ApiResponse of List&lt;UserSessionResponse&gt;</returns>
         ApiResponse<List<UserSessionResponse>> ListSessionsWithHttpInfo(Guid userId);
         /// <summary>
         /// Revoke all sessions
         /// </summary>
+        /// <remarks>
+        /// Immediately revokes every active session for the user. Idempotent.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <returns></returns>
         void RevokeAllSessions(Guid userId);
 
@@ -57,18 +63,21 @@ namespace Torii.Backend.Generated.Api
         /// Revoke all sessions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Immediately revokes every active session for the user. Idempotent.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RevokeAllSessionsWithHttpInfo(Guid userId);
         /// <summary>
         /// Revoke specific session
         /// </summary>
+        /// <remarks>
+        /// Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
+        /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <returns></returns>
         void RevokeSession(Guid userId, Guid sessionId);
 
@@ -76,11 +85,11 @@ namespace Torii.Backend.Generated.Api
         /// Revoke specific session
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RevokeSessionWithHttpInfo(Guid userId, Guid sessionId);
         #endregion Synchronous Operations
@@ -96,10 +105,10 @@ namespace Torii.Backend.Generated.Api
         /// List user sessions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;UserSessionResponse&gt;</returns>
         System.Threading.Tasks.Task<List<UserSessionResponse>> ListSessionsAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -108,10 +117,10 @@ namespace Torii.Backend.Generated.Api
         /// List user sessions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;UserSessionResponse&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<UserSessionResponse>>> ListSessionsWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -119,10 +128,10 @@ namespace Torii.Backend.Generated.Api
         /// Revoke all sessions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Immediately revokes every active session for the user. Idempotent.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task RevokeAllSessionsAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -131,10 +140,10 @@ namespace Torii.Backend.Generated.Api
         /// Revoke all sessions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Immediately revokes every active session for the user. Idempotent.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RevokeAllSessionsWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
@@ -142,11 +151,11 @@ namespace Torii.Backend.Generated.Api
         /// Revoke specific session
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task RevokeSessionAsync(Guid userId, Guid sessionId, System.Threading.CancellationToken cancellationToken = default);
@@ -155,11 +164,11 @@ namespace Torii.Backend.Generated.Api
         /// Revoke specific session
         /// </summary>
         /// <remarks>
-        /// 
+        /// Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RevokeSessionWithHttpInfoAsync(Guid userId, Guid sessionId, System.Threading.CancellationToken cancellationToken = default);
@@ -377,10 +386,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// List user sessions 
+        /// List user sessions Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <returns>List&lt;UserSessionResponse&gt;</returns>
         public List<UserSessionResponse> ListSessions(Guid userId)
         {
@@ -389,10 +398,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// List user sessions 
+        /// List user sessions Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <returns>ApiResponse of List&lt;UserSessionResponse&gt;</returns>
         public Torii.Backend.Generated.Client.ApiResponse<List<UserSessionResponse>> ListSessionsWithHttpInfo(Guid userId)
         {
@@ -403,7 +412,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -428,10 +438,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// List user sessions 
+        /// List user sessions Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;UserSessionResponse&gt;</returns>
         public async System.Threading.Tasks.Task<List<UserSessionResponse>> ListSessionsAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -441,10 +451,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// List user sessions 
+        /// List user sessions Returns all active (unexpired, unrevoked) sessions for the user, ordered by most recently used.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to list.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;UserSessionResponse&gt;)</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<List<UserSessionResponse>>> ListSessionsWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -457,7 +467,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 
@@ -484,10 +495,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke all sessions 
+        /// Revoke all sessions Immediately revokes every active session for the user. Idempotent.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <returns></returns>
         public void RevokeAllSessions(Guid userId)
         {
@@ -495,10 +506,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke all sessions 
+        /// Revoke all sessions Immediately revokes every active session for the user. Idempotent.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Torii.Backend.Generated.Client.ApiResponse<Object> RevokeAllSessionsWithHttpInfo(Guid userId)
         {
@@ -509,6 +520,7 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -533,10 +545,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke all sessions 
+        /// Revoke all sessions Immediately revokes every active session for the user. Idempotent.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task RevokeAllSessionsAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -545,10 +557,10 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke all sessions 
+        /// Revoke all sessions Immediately revokes every active session for the user. Idempotent.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
+        /// <param name="userId">Identifier of the user whose sessions to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<Object>> RevokeAllSessionsWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default)
@@ -561,6 +573,7 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/problem+json"
             };
 
 
@@ -587,11 +600,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke specific session 
+        /// Revoke specific session Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <returns></returns>
         public void RevokeSession(Guid userId, Guid sessionId)
         {
@@ -599,11 +612,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke specific session 
+        /// Revoke specific session Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Torii.Backend.Generated.Client.ApiResponse<Object> RevokeSessionWithHttpInfo(Guid userId, Guid sessionId)
         {
@@ -614,6 +627,7 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -639,11 +653,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke specific session 
+        /// Revoke specific session Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task RevokeSessionAsync(Guid userId, Guid sessionId, System.Threading.CancellationToken cancellationToken = default)
@@ -652,11 +666,11 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Revoke specific session 
+        /// Revoke specific session Revokes a single session by id. Idempotent: returns 204 even if the session was already revoked or expired.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="userId"></param>
-        /// <param name="sessionId"></param>
+        /// <param name="userId">Identifier of the user who owns the session.</param>
+        /// <param name="sessionId">Identifier of the session to revoke.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<Object>> RevokeSessionWithHttpInfoAsync(Guid userId, Guid sessionId, System.Threading.CancellationToken cancellationToken = default)
@@ -669,6 +683,7 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/problem+json"
             };
 
 
