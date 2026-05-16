@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// ServerUserSearchRequest
+    /// Optional filter body for &#x60;POST /users/search&#x60;. Every field is tri-state: omit to skip that filter, send a value to require it, send JSON null to require null.
     /// </summary>
     [DataContract(Name = "ServerUserSearchRequest")]
     public partial class ServerUserSearchRequest : IValidatableObject
@@ -66,11 +66,11 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerUserSearchRequest" /> class.
         /// </summary>
-        /// <param name="name">name.</param>
-        /// <param name="email">email.</param>
-        /// <param name="statuses">statuses.</param>
-        /// <param name="createdAfter">createdAfter.</param>
-        /// <param name="createdBefore">createdBefore.</param>
+        /// <param name="name">Filter by name (exact match). Send null to require users with no name..</param>
+        /// <param name="email">Filter by primary email (exact match). Send null to require users with no email..</param>
+        /// <param name="statuses">Filter by user status. Returns users matching any of the supplied statuses..</param>
+        /// <param name="createdAfter">Only return users created at or after this instant (ISO-8601 UTC)..</param>
+        /// <param name="createdBefore">Only return users created at or before this instant (ISO-8601 UTC)..</param>
         public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
         {
             this.Name = name;
@@ -81,32 +81,49 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Filter by name (exact match). Send null to require users with no name.
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        /// <value>Filter by name (exact match). Send null to require users with no name.</value>
+        /*
+        <example>Ada Lovelace</example>
+        */
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// Filter by primary email (exact match). Send null to require users with no email.
         /// </summary>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        /// <value>Filter by primary email (exact match). Send null to require users with no email.</value>
+        /*
+        <example>ada@example.com</example>
+        */
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Statuses
+        /// Filter by user status. Returns users matching any of the supplied statuses.
         /// </summary>
+        /// <value>Filter by user status. Returns users matching any of the supplied statuses.</value>
         [DataMember(Name = "statuses", EmitDefaultValue = false)]
         public List<ServerUserSearchRequest.StatusesEnum> Statuses { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedAfter
+        /// Only return users created at or after this instant (ISO-8601 UTC).
         /// </summary>
+        /// <value>Only return users created at or after this instant (ISO-8601 UTC).</value>
+        /*
+        <example>2026-01-01T00:00:00Z</example>
+        */
         [DataMember(Name = "createdAfter", EmitDefaultValue = true)]
         public DateTimeOffset? CreatedAfter { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedBefore
+        /// Only return users created at or before this instant (ISO-8601 UTC).
         /// </summary>
+        /// <value>Only return users created at or before this instant (ISO-8601 UTC).</value>
+        /*
+        <example>2026-12-31T23:59:59Z</example>
+        */
         [DataMember(Name = "createdBefore", EmitDefaultValue = true)]
         public DateTimeOffset? CreatedBefore { get; set; }
 
