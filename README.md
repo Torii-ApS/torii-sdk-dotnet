@@ -1,32 +1,51 @@
 # Torii.Backend
 
-Backend SDK for [torii](https://torii.so) — verify end-user JWTs without a per-request round trip, manage users from your .NET server, react to events from torii.
+Backend SDK for [torii](https://torii.so) — verify end-user JWTs without a per-request round trip and manage users from your .NET server.
 
-> **Status: 0.0.x preview.** Stable for verify + users + sessions. Outbound webhooks (`WebhookVerifier.VerifyWebhook`) is a stub that throws until torii's webhook subsystem ships (tracked in [#424](https://github.com/Torii-ApS/torii/issues/424) Phase 0.5).
+> **v0.x — API may still change.**
 
-## Install
+## Setup
 
-```sh
-dotnet add package Torii.Backend
-# ASP.NET Core adapter (optional)
-dotnet add package Torii.Backend.AspNetCore
-```
+1. Sign in to [app.torii.so](https://app.torii.so) and from your dashboard copy:
+   - your **issuer URL** (e.g. `https://acme.torii.so`)
+   - a **secret key** (`sk_test_…` for development, `sk_live_…` for production)
 
-Targets `net8.0`.
+2. Install the package:
 
-## Verify a JWT
+   ```sh
+   dotnet add package Torii.Backend
+   # ASP.NET Core adapter (optional)
+   dotnet add package Torii.Backend.AspNetCore
+   ```
 
-```csharp
-using Torii.Backend;
+   Targets `net8.0`.
 
-var auth = await TokenVerifier.VerifyTokenAsync(
-    token,
-    new VerifyOptions(Issuer: "https://acme.torii.so"));
+3. Verify an end-user JWT:
 
-Console.WriteLine($"{auth.UserId} {auth.EnvironmentId} {auth.EmailVerified}");
-```
+   ```csharp
+   using Torii.Backend;
 
-The first call fetches the issuer's JWKS; subsequent calls reuse the cache and rotate keys automatically via `Microsoft.IdentityModel`'s `ConfigurationManager`. No network round-trip per request.
+   var auth = await TokenVerifier.VerifyTokenAsync(
+       token,
+       new VerifyOptions(Issuer: "https://acme.torii.so"));
+
+   Console.WriteLine($"{auth.UserId} {auth.EnvironmentId} {auth.EmailVerified}");
+   ```
+
+   The first call fetches the issuer's JWKS; subsequent calls reuse the cache and rotate keys automatically via `Microsoft.IdentityModel`'s `ConfigurationManager`. No round-trip per request.
+
+4. Call the backend REST API:
+
+   ```csharp
+   using Torii.Backend;
+
+   using var torii = ToriiClient.Create(
+       secretKey: Environment.GetEnvironmentVariable("TORII_SECRET_KEY")!);
+
+   var user = await torii.Users.GetAsync(userId);
+   ```
+
+   Default base URL is `https://api.torii.so`. Override with the `apiUrl` argument for staging or self-hosted. Pass an `HttpClient` (e.g., from `IHttpClientFactory`) to share connection pooling or inject test fakes.
 
 ## ASP.NET Core
 
@@ -61,11 +80,6 @@ The handler maps the verified JWT into a `ClaimsPrincipal` (claims: `sub`, `pid`
 ## Backend REST API
 
 ```csharp
-using Torii.Backend;
-
-using var torii = ToriiClient.Create(
-    secretKey: Environment.GetEnvironmentVariable("TORII_SECRET_KEY")!);
-
 var page = await torii.Users.ListAsync(limit: 50);
 
 var user = await torii.Users.CreateAsync(new CreateUserInput(Email: "x@y.com"));
@@ -74,8 +88,6 @@ await torii.Users.BanAsync(user.Id);
 var sessions = await torii.Sessions.ListForUserAsync(user.Id);
 await torii.Sessions.RevokeAllForUserAsync(user.Id);
 ```
-
-Default base URL is `https://api.torii.so`. Override with the `apiUrl` argument for staging or self-hosted. Pass an `HttpClient` (e.g., from `IHttpClientFactory`) to share connection pooling or inject test fakes.
 
 ### Partial updates (`Users.UpdateAsync`)
 
@@ -96,13 +108,6 @@ await torii.Users.UpdateAsync(user.Id, new UpdateUserInput
 ```
 
 C# nullable reference types only distinguish two states (`null` vs value), which conflates "leave alone" with "clear". `Patch<T>` is the third state.
-
-## Verify outbound webhooks
-
-```csharp
-// Currently throws — awaiting Phase 0.5
-var evt = WebhookVerifier.VerifyWebhook(secret, headers, payload);
-```
 
 ## Building from source
 

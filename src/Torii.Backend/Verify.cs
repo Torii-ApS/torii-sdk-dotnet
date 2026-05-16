@@ -243,15 +243,14 @@ public static class TokenVerifier
 
 /// <summary>
 /// Outbound webhook signature verification. <strong>Stub:</strong> torii's
-/// outbound webhook subsystem has not shipped yet. This stub keeps the SDK
-/// surface stable so adopting it later doesn't break callers.
-/// Track progress on GitHub issue #424 (Phase 0.5).
+/// outbound webhook subsystem has not shipped yet. This stub reserves the
+/// SDK surface so adopting it later doesn't break callers.
 /// </summary>
 public static class WebhookVerifier
 {
     public static object VerifyWebhook(string secret, IDictionary<string, string> headers, string payload)
     {
         throw new ToriiAuthException(
-            "verifyWebhook: torii's outbound webhook subsystem has not shipped yet — see #424 Phase 0.5");
+            "verifyWebhook: torii's outbound webhook subsystem is not yet available.");
     }
 }
