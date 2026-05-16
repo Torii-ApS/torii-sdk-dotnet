@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Torii.Backend\Torii.Backend.csproj" />
-    <ProjectReference Include="..\Torii.Backend.AspNetCore\Torii.Backend.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Torii.Backend\Torii.Backend.csproj" />
+    <ProjectReference Include="..\..\src\Torii.Backend.AspNetCore\Torii.Backend.AspNetCore.csproj" />
   </ItemGroup>
 
 </Project>

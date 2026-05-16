@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torii.Backend", "Torii.Backend\Torii.Backend.csproj", "{C101A9FD-0346-4574-9375-E9C240DCEE2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torii.Backend", "src\Torii.Backend\Torii.Backend.csproj", "{C101A9FD-0346-4574-9375-E9C240DCEE2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torii.Backend.AspNetCore", "Torii.Backend.AspNetCore\Torii.Backend.AspNetCore.csproj", "{D054FF85-F13F-4BE4-8F04-D23BDD620CAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torii.Backend.AspNetCore", "src\Torii.Backend.AspNetCore\Torii.Backend.AspNetCore.csproj", "{D054FF85-F13F-4BE4-8F04-D23BDD620CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torii.Backend.Tests", "Torii.Backend.Tests\Torii.Backend.Tests.csproj", "{2DB219CC-2451-4F5E-89CC-1340D4C4EF05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torii.Backend.Tests", "tests\Torii.Backend.Tests\Torii.Backend.Tests.csproj", "{2DB219CC-2451-4F5E-89CC-1340D4C4EF05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
