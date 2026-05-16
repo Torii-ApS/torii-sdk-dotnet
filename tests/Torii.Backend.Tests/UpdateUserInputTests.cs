@@ -6,7 +6,7 @@ namespace Torii.Backend.Tests;
 public class UpdateUserInputTests
 {
     [Fact]
-    public void Set_includes_key_with_value()
+    public void Set_with_value_includes_key()
     {
         var body = new UpdateUserInput { Name = Patch<string>.Set("Ada") }.ToJsonBody();
         Assert.True(body.ContainsKey("name"));
@@ -14,9 +14,9 @@ public class UpdateUserInputTests
     }
 
     [Fact]
-    public void Clear_includes_key_as_null()
+    public void Set_with_null_includes_key_as_null()
     {
-        var body = new UpdateUserInput { Phone = Patch<string>.Clear() }.ToJsonBody();
+        var body = new UpdateUserInput { Phone = Patch<string>.Set(null) }.ToJsonBody();
         Assert.True(body.ContainsKey("phone"));
         Assert.Null(body["phone"]);
     }
@@ -39,7 +39,7 @@ public class UpdateUserInputTests
         var body = new UpdateUserInput
         {
             Name = Patch<string>.Set("Ada"),
-            Phone = Patch<string>.Clear(),
+            Phone = Patch<string>.Set(null),     // clear
             // AvatarUrl omitted
             Locale = Patch<string>.Set("en"),
             DateOfBirth = Patch<string>.Set("1990-07-15"),
@@ -57,11 +57,11 @@ public class UpdateUserInputTests
     public void Omit_singleton_is_default()
     {
         var input = new UpdateUserInput();
-        Assert.Equal(Patch<string>.State.Omitted, input.Name.Kind);
-        Assert.Equal(Patch<string>.State.Omitted, input.Phone.Kind);
-        Assert.Equal(Patch<string>.State.Omitted, input.AvatarUrl.Kind);
-        Assert.Equal(Patch<string>.State.Omitted, input.Locale.Kind);
-        Assert.Equal(Patch<string>.State.Omitted, input.Address.Kind);
-        Assert.Equal(Patch<string>.State.Omitted, input.DateOfBirth.Kind);
+        Assert.True(input.Name.IsOmitted);
+        Assert.True(input.Phone.IsOmitted);
+        Assert.True(input.AvatarUrl.IsOmitted);
+        Assert.True(input.Locale.IsOmitted);
+        Assert.True(input.Address.IsOmitted);
+        Assert.True(input.DateOfBirth.IsOmitted);
     }
 }

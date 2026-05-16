@@ -4,15 +4,17 @@ using System.Text.Json.Nodes;
 namespace Torii.Backend;
 
 /// <summary>
-/// Input for <c>Users.UpdateAsync</c>. Each field uses <see cref="Patch{T}"/> to express
-/// three states: omit (default), set to a value, or explicitly clear to <c>null</c>.
+/// Input for <c>Users.UpdateAsync</c>. Each field uses <see cref="Patch{T}"/>
+/// to express three states: omit (default), set to a value, or set to
+/// <c>null</c> (clear). The wrapper mirrors the server-side
+/// <c>PatchValue&lt;T&gt;</c> exactly.
 /// </summary>
 /// <example>
 /// <code>
 /// var input = new UpdateUserInput
 /// {
 ///     Name = Patch&lt;string&gt;.Set("Ada"),
-///     Phone = Patch&lt;string&gt;.Clear(),
+///     Phone = Patch&lt;string&gt;.Set(null),   // clear
 ///     // AvatarUrl omitted — left untouched on the server
 /// };
 /// await client.Users.UpdateAsync(userId, input);
@@ -25,7 +27,7 @@ public sealed record UpdateUserInput
     public Patch<string> AvatarUrl { get; init; } = Patch<string>.Omit;
     public Patch<string> Locale { get; init; } = Patch<string>.Omit;
     public Patch<string> Address { get; init; } = Patch<string>.Omit;
-    /// <summary>ISO date string, e.g. <c>"1990-07-15"</c>.</summary>
+    /// <summary>ISO date string, e.g. <c>"1990-07-15"</c>. Pass <c>Patch&lt;string&gt;.Set(null)</c> to clear.</summary>
     public Patch<string> DateOfBirth { get; init; } = Patch<string>.Omit;
 
     internal JsonObject ToJsonBody()
@@ -42,16 +44,8 @@ public sealed record UpdateUserInput
 
     private static void Add(JsonObject obj, string key, Patch<string> p)
     {
-        switch (p.Kind)
-        {
-            case Patch<string>.State.Omitted:
-                return;
-            case Patch<string>.State.Clear:
-                obj[key] = null;
-                return;
-            case Patch<string>.State.Set:
-                obj[key] = JsonValue.Create(p.Value);
-                return;
-        }
+        if (p.IsOmitted) return;
+        // Patch<T>.Set(value) emits the key; null value → JSON null (clear).
+        obj[key] = p.Value is null ? null : JsonValue.Create(p.Value);
     }
 }

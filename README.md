@@ -82,14 +82,14 @@ Default base URL is `https://api.torii.so`. Override with the `apiUrl` argument 
 `UpdateUserInput` uses `Patch<T>` so each field has three states:
 
 - **Set** — change the field to a value: `Patch<string>.Set("Ada")`
-- **Clear** — explicitly null the field server-side: `Patch<string>.Clear()`
+- **Clear** — explicitly null the field server-side: `Patch<string>.Set(null)`
 - **Omit** — don't touch the field (default): leave the property at its initial value
 
 ```csharp
 await torii.Users.UpdateAsync(user.Id, new UpdateUserInput
 {
     Name = Patch<string>.Set("Ada Lovelace"),
-    Phone = Patch<string>.Clear(),          // sends "phone": null
+    Phone = Patch<string>.Set(null),          // sends "phone": null
     // AvatarUrl omitted — left untouched
     DateOfBirth = Patch<string>.Set("1815-12-10"),
 });
