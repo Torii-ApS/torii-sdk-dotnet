@@ -13,8 +13,8 @@
     <Company>torii</Company>
     <Description>ASP.NET Core authentication handler for the torii backend SDK.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/GOOD-Code-ApS/torii</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GOOD-Code-ApS/torii</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Torii-ApS/torii</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Torii-ApS/torii</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>torii;auth;jwt;aspnetcore;sdk</PackageTags>
     <RootNamespace>Torii.Backend.AspNetCore</RootNamespace>

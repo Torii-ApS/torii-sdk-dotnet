@@ -16,8 +16,8 @@
     <Company>torii</Company>
     <Description>Backend SDK for torii — verify end-user JWTs without a per-request round trip, manage users from your .NET server.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/GOOD-Code-ApS/torii</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GOOD-Code-ApS/torii</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Torii-ApS/torii</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Torii-ApS/torii</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>torii;auth;jwt;oidc;sdk</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>

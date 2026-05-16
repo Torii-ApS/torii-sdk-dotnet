@@ -15,7 +15,7 @@ For security-sensitive issues (anything that could let an attacker forge or bypa
 ## Development
 
 ```sh
-git clone https://github.com/GOOD-Code-ApS/torii-sdk-dotnet
+git clone https://github.com/Torii-ApS/torii-sdk-dotnet
 cd torii-sdk-dotnet
 dotnet restore
 dotnet build

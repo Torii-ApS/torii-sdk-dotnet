@@ -2,7 +2,7 @@
 
 Backend SDK for [torii](https://torii.so) — verify end-user JWTs without a per-request round trip, manage users from your .NET server, react to events from torii.
 
-> **Status: 0.0.x preview.** Stable for verify + users + sessions. Outbound webhooks (`WebhookVerifier.VerifyWebhook`) is a stub that throws until torii's webhook subsystem ships (tracked in [#424](https://github.com/GOOD-Code-ApS/torii/issues/424) Phase 0.5).
+> **Status: 0.0.x preview.** Stable for verify + users + sessions. Outbound webhooks (`WebhookVerifier.VerifyWebhook`) is a stub that throws until torii's webhook subsystem ships (tracked in [#424](https://github.com/Torii-ApS/torii/issues/424) Phase 0.5).
 
 ## Install
 
@@ -87,7 +87,7 @@ var evt = WebhookVerifier.VerifyWebhook(secret, headers, payload);
 ## Building from source
 
 ```sh
-git clone https://github.com/GOOD-Code-ApS/torii-sdk-dotnet
+git clone https://github.com/Torii-ApS/torii-sdk-dotnet
 cd torii-sdk-dotnet
 dotnet build
 dotnet test
