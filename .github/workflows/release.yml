@@ -1,0 +1,75 @@
+name: Release
+
+# Tag-triggered NuGet publish for both packages:
+#   - Torii.Backend
+#   - Torii.Backend.AspNetCore
+#
+# NuGet doesn't yet support OIDC trusted publishing, so this uses a
+# repo-scoped API key.
+#
+# Prerequisites (one-time, see torii repo docs/Publishing-SDKs.md):
+#   1. nuget.org account.
+#   2. Reserve `Torii.*` ID prefix (requires verified domain or NuGet
+#      support request; optional but recommended).
+#   3. Generate API key scoped to glob `Torii.*`, 365-day expiry.
+#   4. Repo secret: NUGET_API_KEY.
+#   5. GitHub Environment `nuget` with required reviewer approval.
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: nuget
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0'
+
+      - name: Assert tag matches csproj versions
+        run: |
+          MAIN_VERSION=$(grep -oP '(?<=<Version>)[^<]+' src/Torii.Backend/Torii.Backend.csproj | head -1)
+          ASPNET_VERSION=$(grep -oP '(?<=<Version>)[^<]+' src/Torii.Backend.AspNetCore/Torii.Backend.AspNetCore.csproj | head -1)
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ "$MAIN_VERSION" != "$TAG_VERSION" ] || [ "$ASPNET_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match csproj versions (Torii.Backend=${MAIN_VERSION}, AspNetCore=${ASPNET_VERSION})" >&2
+            exit 1
+          fi
+
+      - name: Restore
+        run: dotnet restore Torii.Backend.sln
+
+      - name: Test on tagged SHA
+        run: dotnet test Torii.Backend.sln --configuration Release --verbosity normal
+
+      - name: Pack both packages
+        run: |
+          dotnet pack src/Torii.Backend/Torii.Backend.csproj \
+            --configuration Release --output /tmp/nupkgs
+          dotnet pack src/Torii.Backend.AspNetCore/Torii.Backend.AspNetCore.csproj \
+            --configuration Release --output /tmp/nupkgs
+
+      - name: Push to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          dotnet nuget push '/tmp/nupkgs/*.nupkg' \
+            --source https://api.nuget.org/v3/index.json \
+            --api-key "$NUGET_API_KEY" \
+            --skip-duplicate
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes
