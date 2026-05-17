@@ -71,7 +71,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="statuses">Filter by user status. Returns users matching any of the supplied statuses..</param>
         /// <param name="createdAfter">Only return users created at or after this instant (ISO-8601 UTC)..</param>
         /// <param name="createdBefore">Only return users created at or before this instant (ISO-8601 UTC)..</param>
-        public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTime? createdAfter = default, DateTime? createdBefore = default)
+        public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
         {
             this.Name = name;
             this.Email = email;
@@ -115,7 +115,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-01-01T00:00:00Z</example>
         */
         [DataMember(Name = "createdAfter", EmitDefaultValue = true)]
-        public DateTime? CreatedAfter { get; set; }
+        public DateTimeOffset? CreatedAfter { get; set; }
 
         /// <summary>
         /// Only return users created at or before this instant (ISO-8601 UTC).
@@ -125,7 +125,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-12-31T23:59:59Z</example>
         */
         [DataMember(Name = "createdBefore", EmitDefaultValue = true)]
-        public DateTime? CreatedBefore { get; set; }
+        public DateTimeOffset? CreatedBefore { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

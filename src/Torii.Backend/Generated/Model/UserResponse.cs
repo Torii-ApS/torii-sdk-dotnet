@@ -118,7 +118,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="updatedAt">When this user was last modified (ISO-8601 UTC). (required).</param>
         /// <param name="email">Primary email on the profile, if any. Not guaranteed to be verified..</param>
         /// <param name="deletedAt">When this user was deleted, if soft-deleted. Null for active users..</param>
-        public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTime createdAt = default, DateTime updatedAt = default, string email = default, DateTime? deletedAt = default)
+        public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTimeOffset createdAt = default, DateTimeOffset updatedAt = default, string email = default, DateTimeOffset? deletedAt = default)
         {
             this.Id = id;
             this.EnvironmentId = environmentId;
@@ -202,7 +202,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-16T09:30:00Z</example>
         */
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime CreatedAt { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
         /// When this user was last modified (ISO-8601 UTC).
@@ -212,7 +212,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-16T10:00:00Z</example>
         */
         [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime UpdatedAt { get; set; }
+        public DateTimeOffset UpdatedAt { get; set; }
 
         /// <summary>
         /// Primary email on the profile, if any. Not guaranteed to be verified.
@@ -232,7 +232,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-20T12:00:00Z</example>
         */
         [DataMember(Name = "deletedAt", EmitDefaultValue = true)]
-        public DateTime? DeletedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

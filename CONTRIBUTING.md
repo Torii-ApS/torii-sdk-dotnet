@@ -22,12 +22,31 @@ dotnet build
 dotnet test
 ```
 
-The REST client under `Torii.Backend/Generated/` is produced by [`openapi-generator`](https://openapi-generator.tech/) from `spec/server-v1.json`. Don't hand-edit it. To regenerate after a spec update:
+The REST client under `src/Torii.Backend/Generated/` is produced by [`openapi-generator`](https://openapi-generator.tech/) from `spec/server-v1.json`. Don't hand-edit it. To regenerate after a spec update, run the generator into a staging dir (the generator emits a standalone project we don't want), then sync only the source subtree:
 
 ```sh
+# 1. Regenerate into a clean staging dir. The flags matter:
+#    - library=httpclient            → use System.Net.Http (not RestSharp)
+#    - packageName=Torii.Backend.Generated → keeps namespaces stable
+#    - useDateTimeOffset=true        → emit DateTimeOffset? for timestamp
+#      fields. Spring sends `Instant` → ISO-8601 with offset. Without this
+#      flag the generator falls back to DateTime?, which loses tz info
+#      and breaks the hand-written wrapper in ToriiClient.cs.
+rm -rf /tmp/oag-stage && mkdir /tmp/oag-stage
 npx -y @openapitools/openapi-generator-cli generate \
-  -i spec/server-v1.json -g csharp -o Torii.Backend/Generated \
-  --additional-properties=library=httpclient
+  -i spec/server-v1.json -g csharp -o /tmp/oag-stage \
+  --additional-properties=library=httpclient,packageName=Torii.Backend.Generated,useDateTimeOffset=true
+
+# 2. Replace src/Torii.Backend/Generated/ with the regenerated subtree only
+#    (drop the generator's Torii.Backend.Generated.csproj, .sln, README, etc).
+rm -rf src/Torii.Backend/Generated
+mkdir -p src/Torii.Backend/Generated
+cp -r /tmp/oag-stage/src/Torii.Backend.Generated/Api    src/Torii.Backend/Generated/
+cp -r /tmp/oag-stage/src/Torii.Backend.Generated/Client src/Torii.Backend/Generated/
+cp -r /tmp/oag-stage/src/Torii.Backend.Generated/Model  src/Torii.Backend/Generated/
+
+# 3. Verify.
+dotnet build && dotnet test
 ```
 
 The hand-written surface is where bug reports and PRs typically land:
