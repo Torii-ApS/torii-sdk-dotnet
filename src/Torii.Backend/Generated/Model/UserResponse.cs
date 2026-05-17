@@ -110,7 +110,6 @@ namespace Torii.Backend.Generated.Model
         /// <param name="environmentId">Identifier of the environment this user belongs to. (required).</param>
         /// <param name="name">Full name on the profile, if any..</param>
         /// <param name="phone">Phone number on the profile, if any. Not guaranteed to be verified..</param>
-        /// <param name="avatarUrl">URL of the user&#39;s avatar image, if any..</param>
         /// <param name="locale">Preferred locale for emails and UI messages..</param>
         /// <param name="address">Free-form address string, if provided..</param>
         /// <param name="dateOfBirth">Date of birth in ISO-8601 (YYYY-MM-DD), if provided..</param>
@@ -119,7 +118,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="updatedAt">When this user was last modified (ISO-8601 UTC). (required).</param>
         /// <param name="email">Primary email on the profile, if any. Not guaranteed to be verified..</param>
         /// <param name="deletedAt">When this user was deleted, if soft-deleted. Null for active users..</param>
-        public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, string avatarUrl = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTimeOffset createdAt = default, DateTimeOffset updatedAt = default, string email = default, DateTimeOffset? deletedAt = default)
+        public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTime createdAt = default, DateTime updatedAt = default, string email = default, DateTime? deletedAt = default)
         {
             this.Id = id;
             this.EnvironmentId = environmentId;
@@ -128,7 +127,6 @@ namespace Torii.Backend.Generated.Model
             this.UpdatedAt = updatedAt;
             this.Name = name;
             this.Phone = phone;
-            this.AvatarUrl = avatarUrl;
             this.Locale = locale;
             this.Address = address;
             this.DateOfBirth = dateOfBirth;
@@ -177,16 +175,6 @@ namespace Torii.Backend.Generated.Model
         public string Phone { get; set; }
 
         /// <summary>
-        /// URL of the user&#39;s avatar image, if any.
-        /// </summary>
-        /// <value>URL of the user&#39;s avatar image, if any.</value>
-        /*
-        <example>https://cdn.example.com/avatars/ada.png</example>
-        */
-        [DataMember(Name = "avatarUrl", EmitDefaultValue = true)]
-        public string AvatarUrl { get; set; }
-
-        /// <summary>
         /// Free-form address string, if provided.
         /// </summary>
         /// <value>Free-form address string, if provided.</value>
@@ -214,7 +202,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-16T09:30:00Z</example>
         */
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// When this user was last modified (ISO-8601 UTC).
@@ -224,7 +212,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-16T10:00:00Z</example>
         */
         [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         /// <summary>
         /// Primary email on the profile, if any. Not guaranteed to be verified.
@@ -244,7 +232,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-20T12:00:00Z</example>
         */
         [DataMember(Name = "deletedAt", EmitDefaultValue = true)]
-        public DateTimeOffset? DeletedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -258,7 +246,6 @@ namespace Torii.Backend.Generated.Model
             sb.Append("  EnvironmentId: ").Append(EnvironmentId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
-            sb.Append("  AvatarUrl: ").Append(AvatarUrl).Append("\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");

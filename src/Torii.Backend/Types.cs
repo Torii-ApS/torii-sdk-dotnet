@@ -16,7 +16,6 @@ public sealed class User
     public string? Name { get; init; }
     public string? Email { get; init; }
     public string? Phone { get; init; }
-    public string? AvatarUrl { get; init; }
     public string? Locale { get; init; }
     public string? Address { get; init; }
     public DateOnly? DateOfBirth { get; init; }
@@ -33,7 +32,6 @@ public sealed class User
         Name = r.Name,
         Email = r.Email,
         Phone = r.Phone,
-        AvatarUrl = r.AvatarUrl,
         Locale = r.Locale?.ToString()?.ToLowerInvariant(),
         Address = r.Address,
         DateOfBirth = r.DateOfBirth,

@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// Optional filter body for &#x60;POST /users/search&#x60;. Every field is tri-state: omit to skip that filter, send a value to require it, send JSON null to require null.
+    /// Optional filter body for &#x60;POST /users/search&#x60;. Every field is tri-state: omit to skip that filter, send a value to require it. Fields whose inner type is nullable (currently &#x60;name&#x60;, &#x60;email&#x60;) additionally accept JSON null to filter for users where that column is null; the non-nullable &#x60;statuses&#x60; field rejects null.
     /// </summary>
     [DataContract(Name = "ServerUserSearchRequest")]
     public partial class ServerUserSearchRequest : IValidatableObject
@@ -66,12 +66,12 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerUserSearchRequest" /> class.
         /// </summary>
-        /// <param name="name">Filter by name (exact match). Send null to require users with no name..</param>
-        /// <param name="email">Filter by primary email (exact match). Send null to require users with no email..</param>
+        /// <param name="name">Filter by name (case-insensitive substring match). Send null to require users with no name..</param>
+        /// <param name="email">Filter by primary email (case-insensitive substring match). Send null to require users with no email..</param>
         /// <param name="statuses">Filter by user status. Returns users matching any of the supplied statuses..</param>
         /// <param name="createdAfter">Only return users created at or after this instant (ISO-8601 UTC)..</param>
         /// <param name="createdBefore">Only return users created at or before this instant (ISO-8601 UTC)..</param>
-        public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
+        public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTime? createdAfter = default, DateTime? createdBefore = default)
         {
             this.Name = name;
             this.Email = email;
@@ -81,21 +81,21 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Filter by name (exact match). Send null to require users with no name.
+        /// Filter by name (case-insensitive substring match). Send null to require users with no name.
         /// </summary>
-        /// <value>Filter by name (exact match). Send null to require users with no name.</value>
+        /// <value>Filter by name (case-insensitive substring match). Send null to require users with no name.</value>
         /*
-        <example>Ada Lovelace</example>
+        <example>Ada</example>
         */
         [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Filter by primary email (exact match). Send null to require users with no email.
+        /// Filter by primary email (case-insensitive substring match). Send null to require users with no email.
         /// </summary>
-        /// <value>Filter by primary email (exact match). Send null to require users with no email.</value>
+        /// <value>Filter by primary email (case-insensitive substring match). Send null to require users with no email.</value>
         /*
-        <example>ada@example.com</example>
+        <example>@example.com</example>
         */
         [DataMember(Name = "email", EmitDefaultValue = true)]
         public string Email { get; set; }
@@ -115,7 +115,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-01-01T00:00:00Z</example>
         */
         [DataMember(Name = "createdAfter", EmitDefaultValue = true)]
-        public DateTimeOffset? CreatedAfter { get; set; }
+        public DateTime? CreatedAfter { get; set; }
 
         /// <summary>
         /// Only return users created at or before this instant (ISO-8601 UTC).
@@ -125,7 +125,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-12-31T23:59:59Z</example>
         */
         [DataMember(Name = "createdBefore", EmitDefaultValue = true)]
-        public DateTimeOffset? CreatedBefore { get; set; }
+        public DateTime? CreatedBefore { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

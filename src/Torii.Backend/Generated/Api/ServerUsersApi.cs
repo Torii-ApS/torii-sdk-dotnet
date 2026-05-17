@@ -73,7 +73,7 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -84,7 +84,7 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -239,7 +239,7 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -251,7 +251,7 @@ namespace Torii.Backend.Generated.Api
         /// Delete user
         /// </summary>
         /// <remarks>
-        /// Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -798,7 +798,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Delete user Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -809,7 +809,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Delete user Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -848,7 +848,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Delete user Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>
@@ -860,7 +860,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Delete user Soft-deletes the user. Idempotent: returns 204 even if the user was already deleted.
+        /// Delete user Soft-deletes the user. Not idempotent at the HTTP layer: the authorization grant for the user is revoked on the first successful delete, so a subsequent DELETE for the same id returns 403 rather than 204. Treat 403 from a retry as a confirmation that the user is already deleted.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to delete.</param>

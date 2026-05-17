@@ -64,15 +64,13 @@ namespace Torii.Backend.Generated.Model
         /// </summary>
         /// <param name="name">New display name. Send null to clear; omit to leave unchanged..</param>
         /// <param name="phone">New phone number. Send null to clear; omit to leave unchanged..</param>
-        /// <param name="avatarUrl">New avatar URL. Send null to clear; omit to leave unchanged..</param>
         /// <param name="locale">New preferred locale. Send null to clear; omit to leave unchanged..</param>
         /// <param name="address">New postal address. Send null to clear; omit to leave unchanged..</param>
         /// <param name="dateOfBirth">New date of birth (YYYY-MM-DD). Send null to clear; omit to leave unchanged..</param>
-        public UpdateUserRequest(string name = default, string phone = default, string avatarUrl = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default)
+        public UpdateUserRequest(string name = default, string phone = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default)
         {
             this.Name = name;
             this.Phone = phone;
-            this.AvatarUrl = avatarUrl;
             this.Locale = locale;
             this.Address = address;
             this.DateOfBirth = dateOfBirth;
@@ -97,16 +95,6 @@ namespace Torii.Backend.Generated.Model
         */
         [DataMember(Name = "phone", EmitDefaultValue = true)]
         public string Phone { get; set; }
-
-        /// <summary>
-        /// New avatar URL. Send null to clear; omit to leave unchanged.
-        /// </summary>
-        /// <value>New avatar URL. Send null to clear; omit to leave unchanged.</value>
-        /*
-        <example>https://cdn.example.com/avatars/ada.png</example>
-        */
-        [DataMember(Name = "avatarUrl", EmitDefaultValue = true)]
-        public string AvatarUrl { get; set; }
 
         /// <summary>
         /// New postal address. Send null to clear; omit to leave unchanged.
@@ -138,7 +126,6 @@ namespace Torii.Backend.Generated.Model
             sb.Append("class UpdateUserRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
-            sb.Append("  AvatarUrl: ").Append(AvatarUrl).Append("\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");

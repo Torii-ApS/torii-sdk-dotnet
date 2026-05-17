@@ -102,7 +102,7 @@ await torii.Users.UpdateAsync(user.Id, new UpdateUserInput
 {
     Name = Patch<string>.Set("Ada Lovelace"),
     Phone = Patch<string>.Set(null),          // sends "phone": null
-    // AvatarUrl omitted — left untouched
+    // Locale omitted — left untouched
     DateOfBirth = Patch<string>.Set("1815-12-10"),
 });
 ```

@@ -11,7 +11,7 @@
     <!-- Package metadata -->
     <IsPackable>true</IsPackable>
     <PackageId>Torii.Backend</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>torii</Authors>
     <Company>torii</Company>
     <Description>Backend SDK for torii — verify end-user JWTs without a per-request round trip, manage users from your .NET server.</Description>
