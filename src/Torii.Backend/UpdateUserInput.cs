@@ -15,7 +15,7 @@ namespace Torii.Backend;
 /// {
 ///     Name = Patch&lt;string&gt;.Set("Ada"),
 ///     Phone = Patch&lt;string&gt;.Set(null),   // clear
-///     // AvatarUrl omitted — left untouched on the server
+///     // Locale omitted — left untouched on the server
 /// };
 /// await client.Users.UpdateAsync(userId, input);
 /// </code>
@@ -24,7 +24,6 @@ public sealed record UpdateUserInput
 {
     public Patch<string> Name { get; init; } = Patch<string>.Omit;
     public Patch<string> Phone { get; init; } = Patch<string>.Omit;
-    public Patch<string> AvatarUrl { get; init; } = Patch<string>.Omit;
     public Patch<string> Locale { get; init; } = Patch<string>.Omit;
     public Patch<string> Address { get; init; } = Patch<string>.Omit;
     /// <summary>ISO date string, e.g. <c>"1990-07-15"</c>. Pass <c>Patch&lt;string&gt;.Set(null)</c> to clear.</summary>
@@ -35,7 +34,6 @@ public sealed record UpdateUserInput
         var obj = new JsonObject();
         Add(obj, "name", Name);
         Add(obj, "phone", Phone);
-        Add(obj, "avatarUrl", AvatarUrl);
         Add(obj, "locale", Locale);
         Add(obj, "address", Address);
         Add(obj, "dateOfBirth", DateOfBirth);

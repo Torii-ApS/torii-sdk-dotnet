@@ -48,7 +48,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="createdAt">When this session was created (ISO-8601 UTC). (required).</param>
         /// <param name="expiresAt">When this session expires (ISO-8601 UTC). (required).</param>
         /// <param name="lastUsedAt">When this session was last seen by the API (ISO-8601 UTC). (required).</param>
-        public UserSessionResponse(Guid id = default, Guid userId = default, Guid environmentId = default, string userAgent = default, string ipAddress = default, DateTimeOffset createdAt = default, DateTimeOffset expiresAt = default, DateTimeOffset lastUsedAt = default)
+        public UserSessionResponse(Guid id = default, Guid userId = default, Guid environmentId = default, string userAgent = default, string ipAddress = default, DateTime createdAt = default, DateTime expiresAt = default, DateTime lastUsedAt = default)
         {
             this.Id = id;
             this.UserId = userId;
@@ -118,7 +118,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-16T09:30:00Z</example>
         */
         [DataMember(Name = "createdAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// When this session expires (ISO-8601 UTC).
@@ -128,7 +128,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-23T09:30:00Z</example>
         */
         [DataMember(Name = "expiresAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTimeOffset ExpiresAt { get; set; }
+        public DateTime ExpiresAt { get; set; }
 
         /// <summary>
         /// When this session was last seen by the API (ISO-8601 UTC).
@@ -138,7 +138,7 @@ namespace Torii.Backend.Generated.Model
         <example>2026-05-16T11:42:00Z</example>
         */
         [DataMember(Name = "lastUsedAt", IsRequired = true, EmitDefaultValue = true)]
-        public DateTimeOffset LastUsedAt { get; set; }
+        public DateTime LastUsedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

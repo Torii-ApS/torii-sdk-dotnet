@@ -27,7 +27,6 @@ public class UpdateUserInputTests
         var body = new UpdateUserInput().ToJsonBody();
         Assert.False(body.ContainsKey("name"));
         Assert.False(body.ContainsKey("phone"));
-        Assert.False(body.ContainsKey("avatarUrl"));
         Assert.False(body.ContainsKey("locale"));
         Assert.False(body.ContainsKey("address"));
         Assert.False(body.ContainsKey("dateOfBirth"));
@@ -40,7 +39,7 @@ public class UpdateUserInputTests
         {
             Name = Patch<string>.Set("Ada"),
             Phone = Patch<string>.Set(null),     // clear
-            // AvatarUrl omitted
+            // Address omitted
             Locale = Patch<string>.Set("en"),
             DateOfBirth = Patch<string>.Set("1990-07-15"),
         }.ToJsonBody();
@@ -48,7 +47,7 @@ public class UpdateUserInputTests
         var json = body.ToJsonString();
         Assert.Contains("\"name\":\"Ada\"", json);
         Assert.Contains("\"phone\":null", json);
-        Assert.DoesNotContain("avatarUrl", json);
+        Assert.DoesNotContain("address", json);
         Assert.Contains("\"locale\":\"en\"", json);
         Assert.Contains("\"dateOfBirth\":\"1990-07-15\"", json);
     }
@@ -59,7 +58,6 @@ public class UpdateUserInputTests
         var input = new UpdateUserInput();
         Assert.True(input.Name.IsOmitted);
         Assert.True(input.Phone.IsOmitted);
-        Assert.True(input.AvatarUrl.IsOmitted);
         Assert.True(input.Locale.IsOmitted);
         Assert.True(input.Address.IsOmitted);
         Assert.True(input.DateOfBirth.IsOmitted);
