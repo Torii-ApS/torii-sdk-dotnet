@@ -45,7 +45,7 @@ Backend SDK for [torii](https://torii.so) — verify end-user JWTs without a per
    var user = await torii.Users.GetAsync(userId);
    ```
 
-   Default base URL is `https://api.torii.so`. Override with the `apiUrl` argument for staging or self-hosted. Pass an `HttpClient` (e.g., from `IHttpClientFactory`) to share connection pooling or inject test fakes.
+   Default base URL is `https://api.torii.so`. Override with the `apiUrl` argument for staging or testing environments. Pass an `HttpClient` (e.g., from `IHttpClientFactory`) to share connection pooling or inject test fakes.
 
 ## ASP.NET Core
 
