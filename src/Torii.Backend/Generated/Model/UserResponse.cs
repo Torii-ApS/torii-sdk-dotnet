@@ -67,28 +67,22 @@ namespace Torii.Backend.Generated.Model
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum PendingVerification for value: pending_verification
-            /// </summary>
-            [EnumMember(Value = "pending_verification")]
-            PendingVerification = 1,
-
-            /// <summary>
             /// Enum Active for value: active
             /// </summary>
             [EnumMember(Value = "active")]
-            Active = 2,
+            Active = 1,
 
             /// <summary>
             /// Enum Banned for value: banned
             /// </summary>
             [EnumMember(Value = "banned")]
-            Banned = 3,
+            Banned = 2,
 
             /// <summary>
             /// Enum Deleted for value: deleted
             /// </summary>
             [EnumMember(Value = "deleted")]
-            Deleted = 4
+            Deleted = 3
         }
 
 
@@ -117,8 +111,9 @@ namespace Torii.Backend.Generated.Model
         /// <param name="createdAt">When this user was created (ISO-8601 UTC). (required).</param>
         /// <param name="updatedAt">When this user was last modified (ISO-8601 UTC). (required).</param>
         /// <param name="email">Primary email on the profile, if any. Not guaranteed to be verified..</param>
+        /// <param name="emailVerifiedAt">When this user&#39;s primary email was verified, if it has been verified..</param>
         /// <param name="deletedAt">When this user was deleted, if soft-deleted. Null for active users..</param>
-        public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTimeOffset createdAt = default, DateTimeOffset updatedAt = default, string email = default, DateTimeOffset? deletedAt = default)
+        public UserResponse(Guid id = default, Guid environmentId = default, string name = default, string phone = default, LocaleEnum? locale = default, string address = default, DateOnly? dateOfBirth = default, StatusEnum status = default, DateTimeOffset createdAt = default, DateTimeOffset updatedAt = default, string email = default, DateTimeOffset? emailVerifiedAt = default, DateTimeOffset? deletedAt = default)
         {
             this.Id = id;
             this.EnvironmentId = environmentId;
@@ -131,6 +126,7 @@ namespace Torii.Backend.Generated.Model
             this.Address = address;
             this.DateOfBirth = dateOfBirth;
             this.Email = email;
+            this.EmailVerifiedAt = emailVerifiedAt;
             this.DeletedAt = deletedAt;
         }
 
@@ -225,6 +221,16 @@ namespace Torii.Backend.Generated.Model
         public string Email { get; set; }
 
         /// <summary>
+        /// When this user&#39;s primary email was verified, if it has been verified.
+        /// </summary>
+        /// <value>When this user&#39;s primary email was verified, if it has been verified.</value>
+        /*
+        <example>2026-05-16T09:35:00Z</example>
+        */
+        [DataMember(Name = "emailVerifiedAt", EmitDefaultValue = true)]
+        public DateTimeOffset? EmailVerifiedAt { get; set; }
+
+        /// <summary>
         /// When this user was deleted, if soft-deleted. Null for active users.
         /// </summary>
         /// <value>When this user was deleted, if soft-deleted. Null for active users.</value>
@@ -253,6 +259,7 @@ namespace Torii.Backend.Generated.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  EmailVerifiedAt: ").Append(EmailVerifiedAt).Append("\n");
             sb.Append("  DeletedAt: ").Append(DeletedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
