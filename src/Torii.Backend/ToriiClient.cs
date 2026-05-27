@@ -147,7 +147,6 @@ public sealed class UsersClient
 
     private static ServerUserSearchRequest.StatusesEnum ParseStatus(string s) => s switch
     {
-        "pending_verification" => ServerUserSearchRequest.StatusesEnum.PendingVerification,
         "active" => ServerUserSearchRequest.StatusesEnum.Active,
         "banned" => ServerUserSearchRequest.StatusesEnum.Banned,
         "deleted" => ServerUserSearchRequest.StatusesEnum.Deleted,
