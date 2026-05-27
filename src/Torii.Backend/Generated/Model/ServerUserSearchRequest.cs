@@ -39,28 +39,22 @@ namespace Torii.Backend.Generated.Model
         public enum StatusesEnum
         {
             /// <summary>
-            /// Enum PendingVerification for value: pending_verification
-            /// </summary>
-            [EnumMember(Value = "pending_verification")]
-            PendingVerification = 1,
-
-            /// <summary>
             /// Enum Active for value: active
             /// </summary>
             [EnumMember(Value = "active")]
-            Active = 2,
+            Active = 1,
 
             /// <summary>
             /// Enum Banned for value: banned
             /// </summary>
             [EnumMember(Value = "banned")]
-            Banned = 3,
+            Banned = 2,
 
             /// <summary>
             /// Enum Deleted for value: deleted
             /// </summary>
             [EnumMember(Value = "deleted")]
-            Deleted = 4
+            Deleted = 3
         }
 
         /// <summary>

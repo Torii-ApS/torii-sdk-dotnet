@@ -48,7 +48,8 @@ namespace Torii.Backend.Generated.Model
         /// <param name="createdAt">When this session was created (ISO-8601 UTC). (required).</param>
         /// <param name="expiresAt">When this session expires (ISO-8601 UTC). (required).</param>
         /// <param name="lastUsedAt">When this session was last seen by the API (ISO-8601 UTC). (required).</param>
-        public UserSessionResponse(Guid id = default, Guid userId = default, Guid environmentId = default, string userAgent = default, string ipAddress = default, DateTimeOffset createdAt = default, DateTimeOffset expiresAt = default, DateTimeOffset lastUsedAt = default)
+        /// <param name="activeOrganizationId">Active organization pinned to this session (&#x60;org_id&#x60; claim on re-mint)..</param>
+        public UserSessionResponse(Guid id = default, Guid userId = default, Guid environmentId = default, string userAgent = default, string ipAddress = default, DateTimeOffset createdAt = default, DateTimeOffset expiresAt = default, DateTimeOffset lastUsedAt = default, Guid? activeOrganizationId = default)
         {
             this.Id = id;
             this.UserId = userId;
@@ -58,6 +59,7 @@ namespace Torii.Backend.Generated.Model
             this.LastUsedAt = lastUsedAt;
             this.UserAgent = userAgent;
             this.IpAddress = ipAddress;
+            this.ActiveOrganizationId = activeOrganizationId;
         }
 
         /// <summary>
@@ -141,6 +143,13 @@ namespace Torii.Backend.Generated.Model
         public DateTimeOffset LastUsedAt { get; set; }
 
         /// <summary>
+        /// Active organization pinned to this session (&#x60;org_id&#x60; claim on re-mint).
+        /// </summary>
+        /// <value>Active organization pinned to this session (&#x60;org_id&#x60; claim on re-mint).</value>
+        [DataMember(Name = "activeOrganizationId", EmitDefaultValue = true)]
+        public Guid? ActiveOrganizationId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -156,6 +165,7 @@ namespace Torii.Backend.Generated.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  LastUsedAt: ").Append(LastUsedAt).Append("\n");
+            sb.Append("  ActiveOrganizationId: ").Append(ActiveOrganizationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
