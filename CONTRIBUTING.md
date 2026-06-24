@@ -22,7 +22,7 @@ dotnet build
 dotnet test
 ```
 
-The REST client under `src/Torii.Backend/Generated/` is produced by [`openapi-generator`](https://openapi-generator.tech/) from `spec/server-v1.json`. Don't hand-edit it. To regenerate after a spec update, run the generator into a staging dir (the generator emits a standalone project we don't want), then sync only the source subtree:
+The REST client under `src/Torii.Backend/Generated/` is produced by [`openapi-generator`](https://openapi-generator.tech/) from `spec/server-v1.json`. Don't hand-edit it. Run `./regen.sh` to regenerate it (it encapsulates the steps below). To regenerate after a spec update, run the generator into a staging dir (the generator emits a standalone project we don't want), then sync only the source subtree:
 
 ```sh
 # 1. Regenerate into a clean staging dir. The flags matter:
