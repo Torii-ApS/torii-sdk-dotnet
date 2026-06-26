@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Torii.Backend;
 using Xunit;
 
@@ -16,9 +17,9 @@ public class UpdateUserInputTests
     [Fact]
     public void Set_with_null_includes_key_as_null()
     {
-        var body = new UpdateUserInput { Phone = Patch<string>.Set(null) }.ToJsonBody();
-        Assert.True(body.ContainsKey("phone"));
-        Assert.Null(body["phone"]);
+        var body = new UpdateUserInput { LastName = Patch<string>.Set(null) }.ToJsonBody();
+        Assert.True(body.ContainsKey("lastName"));
+        Assert.Null(body["lastName"]);
     }
 
     [Fact]
@@ -26,10 +27,9 @@ public class UpdateUserInputTests
     {
         var body = new UpdateUserInput().ToJsonBody();
         Assert.False(body.ContainsKey("firstName"));
-        Assert.False(body.ContainsKey("phone"));
+        Assert.False(body.ContainsKey("lastName"));
         Assert.False(body.ContainsKey("locale"));
-        Assert.False(body.ContainsKey("address"));
-        Assert.False(body.ContainsKey("dateOfBirth"));
+        Assert.False(body.ContainsKey("unsafeMetadata"));
     }
 
     [Fact]
@@ -38,18 +38,17 @@ public class UpdateUserInputTests
         var body = new UpdateUserInput
         {
             FirstName = Patch<string>.Set("Ada"),
-            Phone = Patch<string>.Set(null),     // clear
-            // Address omitted
-            Locale = Patch<string>.Set("en"),
-            DateOfBirth = Patch<string>.Set("1990-07-15"),
+            LastName = Patch<string>.Set(null),     // clear
+            // Locale omitted
+            UnsafeMetadata = Patch<IReadOnlyDictionary<string, object>>.Set(
+                new Dictionary<string, object> { ["tier"] = "pro" }),
         }.ToJsonBody();
 
         var json = body.ToJsonString();
         Assert.Contains("\"firstName\":\"Ada\"", json);
-        Assert.Contains("\"phone\":null", json);
-        Assert.DoesNotContain("address", json);
-        Assert.Contains("\"locale\":\"en\"", json);
-        Assert.Contains("\"dateOfBirth\":\"1990-07-15\"", json);
+        Assert.Contains("\"lastName\":null", json);
+        Assert.DoesNotContain("locale", json);
+        Assert.Contains("\"unsafeMetadata\":{\"tier\":\"pro\"}", json);
     }
 
     [Fact]
@@ -57,9 +56,8 @@ public class UpdateUserInputTests
     {
         var input = new UpdateUserInput();
         Assert.True(input.FirstName.IsOmitted);
-        Assert.True(input.Phone.IsOmitted);
+        Assert.True(input.LastName.IsOmitted);
         Assert.True(input.Locale.IsOmitted);
-        Assert.True(input.Address.IsOmitted);
-        Assert.True(input.DateOfBirth.IsOmitted);
+        Assert.True(input.UnsafeMetadata.IsOmitted);
     }
 }

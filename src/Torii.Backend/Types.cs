@@ -17,15 +17,16 @@ public sealed class User
     public string? FirstName { get; init; }
     public string? LastName { get; init; }
     public string? Email { get; init; }
-    public string? Phone { get; init; }
     public string? Locale { get; init; }
-    public string? Address { get; init; }
-    public DateOnly? DateOfBirth { get; init; }
     /// <summary>One of: <c>pending_verification</c>, <c>active</c>, <c>banned</c>, <c>deleted</c>.</summary>
     public string Status { get; init; } = "active";
     public DateTimeOffset CreatedAt { get; init; }
     public DateTimeOffset UpdatedAt { get; init; }
+    public DateTimeOffset? EmailVerifiedAt { get; init; }
     public DateTimeOffset? DeletedAt { get; init; }
+    public IReadOnlyDictionary<string, object>? PublicMetadata { get; init; }
+    public IReadOnlyDictionary<string, object>? PrivateMetadata { get; init; }
+    public IReadOnlyDictionary<string, object>? UnsafeMetadata { get; init; }
 
     internal static User FromGenerated(ServerUserResponse r) => new()
     {
@@ -35,14 +36,15 @@ public sealed class User
         FirstName = r.FirstName,
         LastName = r.LastName,
         Email = r.Email,
-        Phone = r.Phone,
         Locale = r.Locale?.ToString()?.ToLowerInvariant(),
-        Address = r.Address,
-        DateOfBirth = r.DateOfBirth,
         Status = r.Status.ToString().ToLowerInvariant(),
         CreatedAt = r.CreatedAt,
         UpdatedAt = r.UpdatedAt,
+        EmailVerifiedAt = r.EmailVerifiedAt,
         DeletedAt = r.DeletedAt,
+        PublicMetadata = r.PublicMetadata,
+        PrivateMetadata = r.PrivateMetadata,
+        UnsafeMetadata = r.UnsafeMetadata,
     };
 }
 
@@ -90,8 +92,8 @@ public sealed record CreateUserInput(
     string? Password = null,
     string? FirstName = null,
     string? LastName = null,
-    string? Phone = null,
-    string? Address = null,
-    DateOnly? DateOfBirth = null);
+    IReadOnlyDictionary<string, object>? PublicMetadata = null,
+    IReadOnlyDictionary<string, object>? PrivateMetadata = null,
+    IReadOnlyDictionary<string, object>? UnsafeMetadata = null);
 
 // UpdateUserInput lives in UpdateUserInput.cs (uses Patch<T> tri-state wrappers).

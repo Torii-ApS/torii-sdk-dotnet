@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace Torii.Backend;
@@ -14,7 +16,7 @@ namespace Torii.Backend;
 /// var input = new UpdateUserInput
 /// {
 ///     FirstName = Patch&lt;string&gt;.Set("Ada"),
-///     Phone = Patch&lt;string&gt;.Set(null),   // clear
+///     LastName = Patch&lt;string&gt;.Set(null),   // clear
 ///     // Locale omitted — left untouched on the server
 /// };
 /// await client.Users.UpdateAsync(userId, input);
@@ -24,21 +26,22 @@ public sealed record UpdateUserInput
 {
     public Patch<string> FirstName { get; init; } = Patch<string>.Omit;
     public Patch<string> LastName { get; init; } = Patch<string>.Omit;
-    public Patch<string> Phone { get; init; } = Patch<string>.Omit;
     public Patch<string> Locale { get; init; } = Patch<string>.Omit;
-    public Patch<string> Address { get; init; } = Patch<string>.Omit;
-    /// <summary>ISO date string, e.g. <c>"1990-07-15"</c>. Pass <c>Patch&lt;string&gt;.Set(null)</c> to clear.</summary>
-    public Patch<string> DateOfBirth { get; init; } = Patch<string>.Omit;
+    /// <summary>Tri-state: omit to leave the server's metadata untouched (never clobbered), set to replace, null to clear.</summary>
+    public Patch<IReadOnlyDictionary<string, object>> UnsafeMetadata { get; init; } = Patch<IReadOnlyDictionary<string, object>>.Omit;
 
     internal JsonObject ToJsonBody()
     {
         var obj = new JsonObject();
         Add(obj, "firstName", FirstName);
         Add(obj, "lastName", LastName);
-        Add(obj, "phone", Phone);
         Add(obj, "locale", Locale);
-        Add(obj, "address", Address);
-        Add(obj, "dateOfBirth", DateOfBirth);
+        if (!UnsafeMetadata.IsOmitted)
+        {
+            obj["unsafeMetadata"] = UnsafeMetadata.Value is null
+                ? null
+                : JsonSerializer.SerializeToNode(UnsafeMetadata.Value);
+        }
         return obj;
     }
 

@@ -161,17 +161,22 @@ public sealed class UsersClient
 
     public async Task<User> CreateAsync(CreateUserInput input, CancellationToken ct = default)
     {
+        // The metadata bags default to {} when not supplied — a new user has none
+        // to clobber, and the server treats an empty object as "no metadata".
         var req = new CreateUserRequest(
             email: input.Email,
             password: input.Password,
             firstName: input.FirstName,
             lastName: input.LastName,
-            phone: input.Phone,
-            address: input.Address,
-            dateOfBirth: input.DateOfBirth);
+            publicMetadata: ToDict(input.PublicMetadata),
+            privateMetadata: ToDict(input.PrivateMetadata),
+            unsafeMetadata: ToDict(input.UnsafeMetadata));
         try { return User.FromGenerated(await _api.CreateUserAsync(req, ct).ConfigureAwait(false)); }
         catch (ApiException ex) { throw Wrap(ex); }
     }
+
+    private static Dictionary<string, object> ToDict(IReadOnlyDictionary<string, object>? m) =>
+        m is null ? new Dictionary<string, object>() : new Dictionary<string, object>(m);
 
     public async Task<User> UpdateAsync(Guid userId, UpdateUserInput input, CancellationToken ct = default)
     {
