@@ -164,7 +164,8 @@ public sealed class UsersClient
         var req = new CreateUserRequest(
             email: input.Email,
             password: input.Password,
-            name: input.Name,
+            firstName: input.FirstName,
+            lastName: input.LastName,
             phone: input.Phone,
             address: input.Address,
             dateOfBirth: input.DateOfBirth);
@@ -193,7 +194,7 @@ public sealed class UsersClient
             var apiEx = new ApiException((int)resp.StatusCode, $"Error calling UpdateUser: {respBody}", respBody);
             throw Wrap(apiEx);
         }
-        var parsed = Newtonsoft.Json.JsonConvert.DeserializeObject<UserResponse>(respBody)
+        var parsed = Newtonsoft.Json.JsonConvert.DeserializeObject<ServerUserResponse>(respBody)
             ?? throw new InvalidOperationException("UpdateUser returned an empty body");
         return User.FromGenerated(parsed);
     }

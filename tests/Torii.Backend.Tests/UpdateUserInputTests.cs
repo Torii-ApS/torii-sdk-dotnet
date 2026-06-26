@@ -8,9 +8,9 @@ public class UpdateUserInputTests
     [Fact]
     public void Set_with_value_includes_key()
     {
-        var body = new UpdateUserInput { Name = Patch<string>.Set("Ada") }.ToJsonBody();
-        Assert.True(body.ContainsKey("name"));
-        Assert.Equal("\"Ada\"", body["name"]!.ToJsonString());
+        var body = new UpdateUserInput { FirstName = Patch<string>.Set("Ada") }.ToJsonBody();
+        Assert.True(body.ContainsKey("firstName"));
+        Assert.Equal("\"Ada\"", body["firstName"]!.ToJsonString());
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public class UpdateUserInputTests
     public void Omit_drops_key()
     {
         var body = new UpdateUserInput().ToJsonBody();
-        Assert.False(body.ContainsKey("name"));
+        Assert.False(body.ContainsKey("firstName"));
         Assert.False(body.ContainsKey("phone"));
         Assert.False(body.ContainsKey("locale"));
         Assert.False(body.ContainsKey("address"));
@@ -37,7 +37,7 @@ public class UpdateUserInputTests
     {
         var body = new UpdateUserInput
         {
-            Name = Patch<string>.Set("Ada"),
+            FirstName = Patch<string>.Set("Ada"),
             Phone = Patch<string>.Set(null),     // clear
             // Address omitted
             Locale = Patch<string>.Set("en"),
@@ -45,7 +45,7 @@ public class UpdateUserInputTests
         }.ToJsonBody();
 
         var json = body.ToJsonString();
-        Assert.Contains("\"name\":\"Ada\"", json);
+        Assert.Contains("\"firstName\":\"Ada\"", json);
         Assert.Contains("\"phone\":null", json);
         Assert.DoesNotContain("address", json);
         Assert.Contains("\"locale\":\"en\"", json);
@@ -56,7 +56,7 @@ public class UpdateUserInputTests
     public void Omit_singleton_is_default()
     {
         var input = new UpdateUserInput();
-        Assert.True(input.Name.IsOmitted);
+        Assert.True(input.FirstName.IsOmitted);
         Assert.True(input.Phone.IsOmitted);
         Assert.True(input.Locale.IsOmitted);
         Assert.True(input.Address.IsOmitted);

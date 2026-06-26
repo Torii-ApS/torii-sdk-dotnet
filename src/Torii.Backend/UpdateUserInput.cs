@@ -13,7 +13,7 @@ namespace Torii.Backend;
 /// <code>
 /// var input = new UpdateUserInput
 /// {
-///     Name = Patch&lt;string&gt;.Set("Ada"),
+///     FirstName = Patch&lt;string&gt;.Set("Ada"),
 ///     Phone = Patch&lt;string&gt;.Set(null),   // clear
 ///     // Locale omitted — left untouched on the server
 /// };
@@ -22,7 +22,8 @@ namespace Torii.Backend;
 /// </example>
 public sealed record UpdateUserInput
 {
-    public Patch<string> Name { get; init; } = Patch<string>.Omit;
+    public Patch<string> FirstName { get; init; } = Patch<string>.Omit;
+    public Patch<string> LastName { get; init; } = Patch<string>.Omit;
     public Patch<string> Phone { get; init; } = Patch<string>.Omit;
     public Patch<string> Locale { get; init; } = Patch<string>.Omit;
     public Patch<string> Address { get; init; } = Patch<string>.Omit;
@@ -32,7 +33,8 @@ public sealed record UpdateUserInput
     internal JsonObject ToJsonBody()
     {
         var obj = new JsonObject();
-        Add(obj, "name", Name);
+        Add(obj, "firstName", FirstName);
+        Add(obj, "lastName", LastName);
         Add(obj, "phone", Phone);
         Add(obj, "locale", Locale);
         Add(obj, "address", Address);

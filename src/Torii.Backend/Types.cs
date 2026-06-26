@@ -14,6 +14,8 @@ public sealed class User
     public Guid Id { get; init; }
     public Guid EnvironmentId { get; init; }
     public string? Name { get; init; }
+    public string? FirstName { get; init; }
+    public string? LastName { get; init; }
     public string? Email { get; init; }
     public string? Phone { get; init; }
     public string? Locale { get; init; }
@@ -25,11 +27,13 @@ public sealed class User
     public DateTimeOffset UpdatedAt { get; init; }
     public DateTimeOffset? DeletedAt { get; init; }
 
-    internal static User FromGenerated(UserResponse r) => new()
+    internal static User FromGenerated(ServerUserResponse r) => new()
     {
         Id = r.Id,
         EnvironmentId = r.EnvironmentId,
         Name = r.Name,
+        FirstName = r.FirstName,
+        LastName = r.LastName,
         Email = r.Email,
         Phone = r.Phone,
         Locale = r.Locale?.ToString()?.ToLowerInvariant(),
@@ -84,7 +88,8 @@ public sealed class CursorPage<T>
 public sealed record CreateUserInput(
     string? Email = null,
     string? Password = null,
-    string? Name = null,
+    string? FirstName = null,
+    string? LastName = null,
     string? Phone = null,
     string? Address = null,
     DateOnly? DateOfBirth = null);
