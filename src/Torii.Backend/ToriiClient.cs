@@ -179,13 +179,14 @@ public sealed class UsersClient
     private static Dictionary<string, object>? ToDict(IReadOnlyDictionary<string, object>? m) =>
         m is null ? null : new Dictionary<string, object>(m);
 
-    public async Task<User> UpdateAsync(Guid userId, UpdateUserInput input, CancellationToken ct = default)
+    public async Task<User> UpdateAsync(Guid userId, UpdateUserRequest request, CancellationToken ct = default)
     {
-        // The generated UpdateUserRequest has typed, non-nullable properties for
-        // string fields. To preserve tri-state semantics (omit / set / explicit null)
-        // we serialise the body by hand and PATCH directly. Server-side fields are
-        // typed and validated; this client just relays the user's intent verbatim.
-        var bodyJson = input.ToJsonBody().ToJsonString();
+        // The generated UpdateUserRequest carries tri-state Patch<T> fields, so a
+        // new field flows through with zero hand edits. Serialize it with the
+        // Patch-aware Newtonsoft settings (a field left null/Patch.Omit is omitted
+        // => leave unchanged; Patch.Set(v) sets; Patch.Set(null) emits an explicit
+        // null => clear) and PATCH directly.
+        var bodyJson = Newtonsoft.Json.JsonConvert.SerializeObject(request, PatchSerialization.Settings);
         using var req = new HttpRequestMessage(
             new HttpMethod("PATCH"),
             $"{_basePath}/api/server/v1/users/{userId}");

@@ -35,4 +35,15 @@ cp -r "$GEN/Api"    src/Torii.Backend/Generated/
 cp -r "$GEN/Client" src/Torii.Backend/Generated/
 cp -r "$GEN/Model"  src/Torii.Backend/Generated/
 
+# Tri-state PATCH fields: rewrite every nullable `string` property (and its
+# constructor parameter) on UpdateUserRequest to a tri-state `Patch<string>`, so
+# callers can distinguish omit / clear / set. PatchSerialization wires the
+# Newtonsoft resolver + converter that turns that into the wire contract
+# (omit a field left null/Patch.Omit, emit a value or an explicit null). Generic
+# within the model: a new nullable-string field is converted automatically, no
+# hand edits. The csharp generator can't express this and System.Text.Json can't
+# omit a property from a value-converter, so it is post-processed here.
+PATCH_MODEL=src/Torii.Backend/Generated/Model/UpdateUserRequest.cs
+perl -pi -e 's/public string (\w+) \{ get; set; \}/public Torii.Backend.Patch<string> $1 { get; set; }/g; s/\bstring (\w+) = default/Torii.Backend.Patch<string> $1 = default/g' "$PATCH_MODEL"
+
 echo "✓ regenerated src/Torii.Backend/Generated/ from spec/server-v1.json"

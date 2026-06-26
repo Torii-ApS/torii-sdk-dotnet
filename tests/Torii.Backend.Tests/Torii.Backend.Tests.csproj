@@ -23,4 +23,11 @@
     <ProjectReference Include="..\..\src\Torii.Backend.AspNetCore\Torii.Backend.AspNetCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Shared tri-state PATCH wire contract fixtures (contract-tests/fixtures/patch-wire). -->
+    <None Include="patch-wire-fixtures.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

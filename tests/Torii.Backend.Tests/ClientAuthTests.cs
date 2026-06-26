@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Torii.Backend;
+using Torii.Backend.Generated.Model;
 using Xunit;
 
 namespace Torii.Backend.Tests;
@@ -76,12 +77,12 @@ public class ClientAuthTests
     }
 
     [Fact]
-    public async Task Hand_rolled_update_sends_bearer_token()
+    public async Task Update_sends_bearer_token()
     {
         var (client, handler) = NewClient();
         await client.Users.UpdateAsync(
             Guid.NewGuid(),
-            new UpdateUserInput { FirstName = Patch<string>.Set("Ada") });
+            new UpdateUserRequest { FirstName = Patch<string>.Set("Ada") });
         Assert.Equal("Bearer sk_test_abc", handler.LastAuth);
     }
 }
