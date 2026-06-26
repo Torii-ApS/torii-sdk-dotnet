@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore
+        run: dotnet restore Torii.Backend.sln
+
+      - name: Build
+        run: dotnet build Torii.Backend.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test Torii.Backend.sln --configuration Release --no-build --verbosity normal
+
+      - name: Pack (verify .nupkg builds cleanly)
+        run: dotnet pack Torii.Backend.sln --configuration Release --no-build --output /tmp/nupkgs
