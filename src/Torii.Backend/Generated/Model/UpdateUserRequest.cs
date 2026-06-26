@@ -66,7 +66,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="lastName">New last (family) name. Send null to clear; omit to leave unchanged..</param>
         /// <param name="locale">New preferred locale. Send null to clear; omit to leave unchanged..</param>
         /// <param name="unsafeMetadata">Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Merged result max 512 bytes..</param>
-        public UpdateUserRequest(string firstName = default, string lastName = default, LocaleEnum? locale = default, Dictionary<string, Object> unsafeMetadata = default)
+        public UpdateUserRequest(Torii.Backend.Patch<string> firstName = default, Torii.Backend.Patch<string> lastName = default, LocaleEnum? locale = default, Dictionary<string, Object> unsafeMetadata = default)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -82,7 +82,7 @@ namespace Torii.Backend.Generated.Model
         <example>Ada</example>
         */
         [DataMember(Name = "firstName", EmitDefaultValue = true)]
-        public string FirstName { get; set; }
+        public Torii.Backend.Patch<string> FirstName { get; set; }
 
         /// <summary>
         /// New last (family) name. Send null to clear; omit to leave unchanged.
@@ -92,7 +92,7 @@ namespace Torii.Backend.Generated.Model
         <example>Lovelace</example>
         */
         [DataMember(Name = "lastName", EmitDefaultValue = true)]
-        public string LastName { get; set; }
+        public Torii.Backend.Patch<string> LastName { get; set; }
 
         /// <summary>
         /// Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Merged result max 512 bytes.
