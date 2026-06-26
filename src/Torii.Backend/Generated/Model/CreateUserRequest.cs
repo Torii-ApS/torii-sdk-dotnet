@@ -35,42 +35,22 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateUserRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateUserRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateUserRequest" /> class.
-        /// </summary>
         /// <param name="email">Primary email for the new user. If omitted, the user is created without a sign-in identity..</param>
         /// <param name="password">Initial password. Subject to the environment&#39;s password policy. Omit to create a passwordless user (e.g. social-only)..</param>
         /// <param name="firstName">First (given) name to seed on the profile..</param>
         /// <param name="lastName">Last (family) name to seed on the profile..</param>
-        /// <param name="publicMetadata">Initial public metadata (SDK-readable, server-written). Max 512 bytes. (required).</param>
-        /// <param name="privateMetadata">Initial private metadata (server-only). Max 4096 bytes. (required).</param>
-        /// <param name="unsafeMetadata">Initial unsafe metadata (end-user writable). Max 512 bytes. (required).</param>
+        /// <param name="publicMetadata">Initial public metadata (SDK-readable, server-written). Max 512 bytes..</param>
+        /// <param name="privateMetadata">Initial private metadata (server-only). Max 4096 bytes..</param>
+        /// <param name="unsafeMetadata">Initial unsafe metadata (end-user writable). Max 512 bytes..</param>
         public CreateUserRequest(string email = default, string password = default, string firstName = default, string lastName = default, Dictionary<string, Object> publicMetadata = default, Dictionary<string, Object> privateMetadata = default, Dictionary<string, Object> unsafeMetadata = default)
         {
-            // to ensure "publicMetadata" is required (not null)
-            if (publicMetadata == null)
-            {
-                throw new ArgumentNullException("publicMetadata is a required property for CreateUserRequest and cannot be null");
-            }
-            this.PublicMetadata = publicMetadata;
-            // to ensure "privateMetadata" is required (not null)
-            if (privateMetadata == null)
-            {
-                throw new ArgumentNullException("privateMetadata is a required property for CreateUserRequest and cannot be null");
-            }
-            this.PrivateMetadata = privateMetadata;
-            // to ensure "unsafeMetadata" is required (not null)
-            if (unsafeMetadata == null)
-            {
-                throw new ArgumentNullException("unsafeMetadata is a required property for CreateUserRequest and cannot be null");
-            }
-            this.UnsafeMetadata = unsafeMetadata;
             this.Email = email;
             this.Password = password;
             this.FirstName = firstName;
             this.LastName = lastName;
+            this.PublicMetadata = publicMetadata;
+            this.PrivateMetadata = privateMetadata;
+            this.UnsafeMetadata = unsafeMetadata;
         }
 
         /// <summary>
@@ -120,7 +100,7 @@ namespace Torii.Backend.Generated.Model
         /*
         <example>{plan&#x3D;free}</example>
         */
-        [DataMember(Name = "publicMetadata", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "publicMetadata", EmitDefaultValue = false)]
         public Dictionary<string, Object> PublicMetadata { get; set; }
 
         /// <summary>
@@ -130,7 +110,7 @@ namespace Torii.Backend.Generated.Model
         /*
         <example>{stripeId&#x3D;cus_123}</example>
         */
-        [DataMember(Name = "privateMetadata", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "privateMetadata", EmitDefaultValue = false)]
         public Dictionary<string, Object> PrivateMetadata { get; set; }
 
         /// <summary>
@@ -140,7 +120,7 @@ namespace Torii.Backend.Generated.Model
         /*
         <example>{onboardingStep&#x3D;0}</example>
         */
-        [DataMember(Name = "unsafeMetadata", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "unsafeMetadata", EmitDefaultValue = false)]
         public Dictionary<string, Object> UnsafeMetadata { get; set; }
 
         /// <summary>

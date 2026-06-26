@@ -656,6 +656,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ServerUserResponse>("/api/server/v1/users/{userId}/ban", localVarRequestOptions, this.Configuration);
@@ -712,6 +718,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -770,6 +782,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.Data = createUserRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ServerUserResponse>("/api/server/v1/users", localVarRequestOptions, this.Configuration);
@@ -831,6 +849,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.Data = createUserRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -882,6 +906,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<Object>("/api/server/v1/users/{userId}", localVarRequestOptions, this.Configuration);
@@ -936,6 +966,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -989,6 +1025,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<ServerUserResponse>("/api/server/v1/users/{userId}", localVarRequestOptions, this.Configuration);
@@ -1045,6 +1087,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1111,6 +1159,12 @@ namespace Torii.Backend.Generated.Api
             }
             localVarRequestOptions.Data = serverUserSearchRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<CursorPageResponseServerUserResponse>("/api/server/v1/users/search", localVarRequestOptions, this.Configuration);
@@ -1180,6 +1234,12 @@ namespace Torii.Backend.Generated.Api
             }
             localVarRequestOptions.Data = serverUserSearchRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1233,6 +1293,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<ServerUserResponse>("/api/server/v1/users/{userId}/unban", localVarRequestOptions, this.Configuration);
@@ -1289,6 +1355,12 @@ namespace Torii.Backend.Generated.Api
 
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1350,6 +1422,12 @@ namespace Torii.Backend.Generated.Api
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
             localVarRequestOptions.Data = updateUserRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Patch<ServerUserResponse>("/api/server/v1/users/{userId}", localVarRequestOptions, this.Configuration);
@@ -1414,6 +1492,12 @@ namespace Torii.Backend.Generated.Api
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
             localVarRequestOptions.Data = updateUserRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1475,6 +1559,12 @@ namespace Torii.Backend.Generated.Api
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
             localVarRequestOptions.Data = updateUserMetadataRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Patch<ServerUserResponse>("/api/server/v1/users/{userId}/metadata", localVarRequestOptions, this.Configuration);
@@ -1539,6 +1629,12 @@ namespace Torii.Backend.Generated.Api
             localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
             localVarRequestOptions.Data = updateUserMetadataRequest;
 
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 

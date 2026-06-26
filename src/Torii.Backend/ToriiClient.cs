@@ -161,8 +161,9 @@ public sealed class UsersClient
 
     public async Task<User> CreateAsync(CreateUserInput input, CancellationToken ct = default)
     {
-        // The metadata bags default to {} when not supplied — a new user has none
-        // to clobber, and the server treats an empty object as "no metadata".
+        // Metadata bags are optional: a null bag is omitted from the request
+        // body (EmitDefaultValue=false), so the server applies its default ({}).
+        // A new user has no metadata to clobber.
         var req = new CreateUserRequest(
             email: input.Email,
             password: input.Password,
@@ -175,8 +176,8 @@ public sealed class UsersClient
         catch (ApiException ex) { throw Wrap(ex); }
     }
 
-    private static Dictionary<string, object> ToDict(IReadOnlyDictionary<string, object>? m) =>
-        m is null ? new Dictionary<string, object>() : new Dictionary<string, object>(m);
+    private static Dictionary<string, object>? ToDict(IReadOnlyDictionary<string, object>? m) =>
+        m is null ? null : new Dictionary<string, object>(m);
 
     public async Task<User> UpdateAsync(Guid userId, UpdateUserInput input, CancellationToken ct = default)
     {
