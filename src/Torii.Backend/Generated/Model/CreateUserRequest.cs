@@ -39,9 +39,9 @@ namespace Torii.Backend.Generated.Model
         /// <param name="password">Initial password. Subject to the environment&#39;s password policy. Omit to create a passwordless user (e.g. social-only)..</param>
         /// <param name="firstName">First (given) name to seed on the profile..</param>
         /// <param name="lastName">Last (family) name to seed on the profile..</param>
-        /// <param name="publicMetadata">Initial public metadata (SDK-readable, server-written). Max 512 bytes..</param>
-        /// <param name="privateMetadata">Initial private metadata (server-only). Max 4096 bytes..</param>
-        /// <param name="unsafeMetadata">Initial unsafe metadata (end-user writable). Max 512 bytes..</param>
+        /// <param name="publicMetadata">Initial public metadata (SDK-readable, server-written). Part of the 8 KB combined metadata budget..</param>
+        /// <param name="privateMetadata">Initial private metadata (server-only). Part of the 8 KB combined metadata budget..</param>
+        /// <param name="unsafeMetadata">Initial unsafe metadata (end-user writable). Part of the 8 KB combined metadata budget..</param>
         public CreateUserRequest(string email = default, string password = default, string firstName = default, string lastName = default, Dictionary<string, Object> publicMetadata = default, Dictionary<string, Object> privateMetadata = default, Dictionary<string, Object> unsafeMetadata = default)
         {
             this.Email = email;
@@ -94,9 +94,9 @@ namespace Torii.Backend.Generated.Model
         public string LastName { get; set; }
 
         /// <summary>
-        /// Initial public metadata (SDK-readable, server-written). Max 512 bytes.
+        /// Initial public metadata (SDK-readable, server-written). Part of the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Initial public metadata (SDK-readable, server-written). Max 512 bytes.</value>
+        /// <value>Initial public metadata (SDK-readable, server-written). Part of the 8 KB combined metadata budget.</value>
         /*
         <example>{plan&#x3D;free}</example>
         */
@@ -104,19 +104,19 @@ namespace Torii.Backend.Generated.Model
         public Dictionary<string, Object> PublicMetadata { get; set; }
 
         /// <summary>
-        /// Initial private metadata (server-only). Max 4096 bytes.
+        /// Initial private metadata (server-only). Part of the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Initial private metadata (server-only). Max 4096 bytes.</value>
+        /// <value>Initial private metadata (server-only). Part of the 8 KB combined metadata budget.</value>
         /*
-        <example>{stripeId&#x3D;cus_123}</example>
+        <example>{billingCustomerId&#x3D;cus_123}</example>
         */
         [DataMember(Name = "privateMetadata", EmitDefaultValue = false)]
         public Dictionary<string, Object> PrivateMetadata { get; set; }
 
         /// <summary>
-        /// Initial unsafe metadata (end-user writable). Max 512 bytes.
+        /// Initial unsafe metadata (end-user writable). Part of the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Initial unsafe metadata (end-user writable). Max 512 bytes.</value>
+        /// <value>Initial unsafe metadata (end-user writable). Part of the 8 KB combined metadata budget.</value>
         /*
         <example>{onboardingStep&#x3D;0}</example>
         */

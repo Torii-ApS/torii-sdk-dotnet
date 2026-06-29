@@ -264,7 +264,7 @@ namespace Torii.Backend.Generated.Model
         /// </summary>
         /// <value>Private metadata: server-only. Never exposed to the SDK or in a JWT.</value>
         /*
-        <example>{stripeId&#x3D;cus_123}</example>
+        <example>{billingCustomerId&#x3D;cus_123}</example>
         */
         [DataMember(Name = "privateMetadata", IsRequired = true, EmitDefaultValue = true)]
         public Dictionary<string, Object> PrivateMetadata { get; set; }
