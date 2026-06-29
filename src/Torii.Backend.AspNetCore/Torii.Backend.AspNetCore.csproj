@@ -8,7 +8,7 @@
 
     <IsPackable>true</IsPackable>
     <PackageId>Torii.Backend.AspNetCore</PackageId>
-    <Version>0.0.7</Version>
+    <Version>0.0.8</Version>
     <Authors>torii</Authors>
     <Company>torii</Company>
     <Description>ASP.NET Core authentication handler for the torii backend SDK.</Description>
