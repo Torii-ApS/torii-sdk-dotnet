@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Torii.Backend.Generated.Client.OpenAPIDateConverter
 namespace Torii.Backend.Generated.Model
 {
     /// <summary>
-    /// Optional filter body for &#x60;POST /users/search&#x60;. Every field is tri-state: omit to skip that filter, send a value to require it. Fields whose inner type is nullable (currently &#x60;name&#x60;, &#x60;email&#x60;) additionally accept JSON null to filter for users where that column is null; the non-nullable &#x60;statuses&#x60; field rejects null.
+    /// Optional filter body for &#x60;POST /users/search&#x60;. Every field is tri-state: omit to skip that filter, send a value to apply it. The three id-selectors (&#x60;userIds&#x60;, &#x60;emailAddresses&#x60;, &#x60;email&#x60;) resolve users to a set of ids and, when more than one is supplied, are combined with AND (intersection); a supplied id-selector whose resolved set is empty returns an empty page. &#x60;name&#x60; additionally accepts JSON null to match users with no name; an explicit null or blank &#x60;email&#x60; contributes no restriction; the non-nullable &#x60;statuses&#x60; field rejects null.
     /// </summary>
     [DataContract(Name = "ServerUserSearchRequest")]
     public partial class ServerUserSearchRequest : IValidatableObject
@@ -61,13 +61,17 @@ namespace Torii.Backend.Generated.Model
         /// Initializes a new instance of the <see cref="ServerUserSearchRequest" /> class.
         /// </summary>
         /// <param name="name">Filter by name (case-insensitive substring match). Send null to require users with no name..</param>
-        /// <param name="email">Filter by primary email (case-insensitive substring match). Send null to require users with no email..</param>
+        /// <param name="userIds">Restrict to these user ids (the explicit batch-by-id lookup), at most 100. AND-combined with the other id-selectors; an empty list returns an empty page..</param>
+        /// <param name="emailAddresses">Resolve users by exact (case-insensitive) email address (one or more, at most 100). Unlike &#x60;email&#x60;, never matches a superstring. AND-combined with the other id-selectors; an empty list, or addresses matching nobody, returns an empty page..</param>
+        /// <param name="email">Filter by primary email (case-insensitive substring match). AND-combined with the other id-selectors. An explicit null or blank value contributes no restriction..</param>
         /// <param name="statuses">Filter by user status. Returns users matching any of the supplied statuses..</param>
         /// <param name="createdAfter">Only return users created at or after this instant (ISO-8601 UTC)..</param>
         /// <param name="createdBefore">Only return users created at or before this instant (ISO-8601 UTC)..</param>
-        public ServerUserSearchRequest(string name = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
+        public ServerUserSearchRequest(string name = default, List<Guid> userIds = default, List<string> emailAddresses = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
         {
             this.Name = name;
+            this.UserIds = userIds;
+            this.EmailAddresses = emailAddresses;
             this.Email = email;
             this.Statuses = statuses;
             this.CreatedAfter = createdAfter;
@@ -85,9 +89,29 @@ namespace Torii.Backend.Generated.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Filter by primary email (case-insensitive substring match). Send null to require users with no email.
+        /// Restrict to these user ids (the explicit batch-by-id lookup), at most 100. AND-combined with the other id-selectors; an empty list returns an empty page.
         /// </summary>
-        /// <value>Filter by primary email (case-insensitive substring match). Send null to require users with no email.</value>
+        /// <value>Restrict to these user ids (the explicit batch-by-id lookup), at most 100. AND-combined with the other id-selectors; an empty list returns an empty page.</value>
+        /*
+        <example>[01931a73-8b00-7000-8000-000000000000]</example>
+        */
+        [DataMember(Name = "userIds", EmitDefaultValue = false)]
+        public List<Guid> UserIds { get; set; }
+
+        /// <summary>
+        /// Resolve users by exact (case-insensitive) email address (one or more, at most 100). Unlike &#x60;email&#x60;, never matches a superstring. AND-combined with the other id-selectors; an empty list, or addresses matching nobody, returns an empty page.
+        /// </summary>
+        /// <value>Resolve users by exact (case-insensitive) email address (one or more, at most 100). Unlike &#x60;email&#x60;, never matches a superstring. AND-combined with the other id-selectors; an empty list, or addresses matching nobody, returns an empty page.</value>
+        /*
+        <example>[ada@example.com]</example>
+        */
+        [DataMember(Name = "emailAddresses", EmitDefaultValue = false)]
+        public List<string> EmailAddresses { get; set; }
+
+        /// <summary>
+        /// Filter by primary email (case-insensitive substring match). AND-combined with the other id-selectors. An explicit null or blank value contributes no restriction.
+        /// </summary>
+        /// <value>Filter by primary email (case-insensitive substring match). AND-combined with the other id-selectors. An explicit null or blank value contributes no restriction.</value>
         /*
         <example>@example.com</example>
         */
@@ -130,6 +154,8 @@ namespace Torii.Backend.Generated.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ServerUserSearchRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  UserIds: ").Append(UserIds).Append("\n");
+            sb.Append("  EmailAddresses: ").Append(EmailAddresses).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Statuses: ").Append(Statuses).Append("\n");
             sb.Append("  CreatedAfter: ").Append(CreatedAfter).Append("\n");

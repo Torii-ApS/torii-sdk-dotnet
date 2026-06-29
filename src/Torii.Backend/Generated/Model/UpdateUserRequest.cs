@@ -65,7 +65,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="firstName">New first (given) name. Send null to clear; omit to leave unchanged..</param>
         /// <param name="lastName">New last (family) name. Send null to clear; omit to leave unchanged..</param>
         /// <param name="locale">New preferred locale. Send null to clear; omit to leave unchanged..</param>
-        /// <param name="unsafeMetadata">Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Merged result max 512 bytes..</param>
+        /// <param name="unsafeMetadata">Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Counts toward the 8 KB combined metadata budget..</param>
         public UpdateUserRequest(Torii.Backend.Patch<string> firstName = default, Torii.Backend.Patch<string> lastName = default, LocaleEnum? locale = default, Dictionary<string, Object> unsafeMetadata = default)
         {
             this.FirstName = firstName;
@@ -95,9 +95,9 @@ namespace Torii.Backend.Generated.Model
         public Torii.Backend.Patch<string> LastName { get; set; }
 
         /// <summary>
-        /// Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Merged result max 512 bytes.
+        /// Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Counts toward the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Merged result max 512 bytes.</value>
+        /// <value>Deep-merges into the user&#39;s unsafe metadata (a key set to null removes it); omit to leave unchanged. Counts toward the 8 KB combined metadata budget.</value>
         /*
         <example>{onboardingStep&#x3D;2}</example>
         */

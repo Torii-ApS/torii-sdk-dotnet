@@ -115,7 +115,7 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -128,7 +128,7 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -184,7 +184,7 @@ namespace Torii.Backend.Generated.Api
         /// Update user metadata
         /// </summary>
         /// <remarks>
-        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -196,7 +196,7 @@ namespace Torii.Backend.Generated.Api
         /// Update user metadata
         /// </summary>
         /// <remarks>
-        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -308,7 +308,7 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -322,7 +322,7 @@ namespace Torii.Backend.Generated.Api
         /// Search users
         /// </summary>
         /// <remarks>
-        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -383,7 +383,7 @@ namespace Torii.Backend.Generated.Api
         /// Update user metadata
         /// </summary>
         /// <remarks>
-        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -396,7 +396,7 @@ namespace Torii.Backend.Generated.Api
         /// Update user metadata
         /// </summary>
         /// <remarks>
-        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </remarks>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -1108,7 +1108,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -1122,7 +1122,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -1179,7 +1179,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -1194,7 +1194,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Filters use the same tri-state PATCH semantics as &#x60;UpdateUserRequest&#x60;: omit a field to skip that filter, send a value to require it, send null to require null. Uses POST so the filter body can be sent without URL-encoding.
+        /// Search users Returns a cursor-paginated page of end-users in the environment matching the optional filters. Uses POST so the filter body can be sent without URL-encoding. Three id-selectors resolve users to a set of ids (&#x60;userIds&#x60;, the explicit batch-by-id lookup; &#x60;emailAddresses&#x60;, exact and case-insensitive; &#x60;email&#x60;, a case-insensitive substring); when more than one is supplied they are combined with AND (intersection). The remaining filters (&#x60;name&#x60;, &#x60;statuses&#x60;, &#x60;createdAfter&#x60;/&#x60;createdBefore&#x60;) apply on top.
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
@@ -1513,7 +1513,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -1526,7 +1526,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -1579,7 +1579,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>
@@ -1593,7 +1593,7 @@ namespace Torii.Backend.Generated.Api
         }
 
         /// <summary>
-        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged result is capped at 512 bytes for &#x60;publicMetadata&#x60;/&#x60;unsafeMetadata&#x60; and 4096 bytes for &#x60;privateMetadata&#x60;.
+        /// Update user metadata Deep-merges into any of the three metadata bags. Each bag is tri-state: omit the key to leave the bag unchanged, or send an object to deep-merge into the existing bag (a key set to null removes it). The merged metadata is capped at 8 KB total across &#x60;publicMetadata&#x60;, &#x60;privateMetadata&#x60;, and &#x60;unsafeMetadata&#x60; combined (no per-bag limit).
         /// </summary>
         /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">Identifier of the user to update.</param>

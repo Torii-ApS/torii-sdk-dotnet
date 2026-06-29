@@ -35,9 +35,9 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateUserMetadataRequest" /> class.
         /// </summary>
-        /// <param name="publicMetadata">Public metadata bag: SDK-readable, server-written. Max 512 bytes..</param>
-        /// <param name="privateMetadata">Private metadata bag: server-only, never exposed to the SDK or in a JWT. Max 4096 bytes..</param>
-        /// <param name="unsafeMetadata">Unsafe metadata bag: readable and writable by the end-user via the SDK. Max 512 bytes..</param>
+        /// <param name="publicMetadata">Public metadata bag: SDK-readable, server-written. Part of the 8 KB combined metadata budget..</param>
+        /// <param name="privateMetadata">Private metadata bag: server-only, never exposed to the SDK or in a JWT. Part of the 8 KB combined metadata budget..</param>
+        /// <param name="unsafeMetadata">Unsafe metadata bag: readable and writable by the end-user via the SDK. Part of the 8 KB combined metadata budget..</param>
         public UpdateUserMetadataRequest(Dictionary<string, Object> publicMetadata = default, Dictionary<string, Object> privateMetadata = default, Dictionary<string, Object> unsafeMetadata = default)
         {
             this.PublicMetadata = publicMetadata;
@@ -46,9 +46,9 @@ namespace Torii.Backend.Generated.Model
         }
 
         /// <summary>
-        /// Public metadata bag: SDK-readable, server-written. Max 512 bytes.
+        /// Public metadata bag: SDK-readable, server-written. Part of the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Public metadata bag: SDK-readable, server-written. Max 512 bytes.</value>
+        /// <value>Public metadata bag: SDK-readable, server-written. Part of the 8 KB combined metadata budget.</value>
         /*
         <example>{plan&#x3D;pro}</example>
         */
@@ -56,19 +56,19 @@ namespace Torii.Backend.Generated.Model
         public Dictionary<string, Object> PublicMetadata { get; set; }
 
         /// <summary>
-        /// Private metadata bag: server-only, never exposed to the SDK or in a JWT. Max 4096 bytes.
+        /// Private metadata bag: server-only, never exposed to the SDK or in a JWT. Part of the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Private metadata bag: server-only, never exposed to the SDK or in a JWT. Max 4096 bytes.</value>
+        /// <value>Private metadata bag: server-only, never exposed to the SDK or in a JWT. Part of the 8 KB combined metadata budget.</value>
         /*
-        <example>{stripeId&#x3D;cus_123}</example>
+        <example>{billingCustomerId&#x3D;cus_123}</example>
         */
         [DataMember(Name = "privateMetadata", EmitDefaultValue = false)]
         public Dictionary<string, Object> PrivateMetadata { get; set; }
 
         /// <summary>
-        /// Unsafe metadata bag: readable and writable by the end-user via the SDK. Max 512 bytes.
+        /// Unsafe metadata bag: readable and writable by the end-user via the SDK. Part of the 8 KB combined metadata budget.
         /// </summary>
-        /// <value>Unsafe metadata bag: readable and writable by the end-user via the SDK. Max 512 bytes.</value>
+        /// <value>Unsafe metadata bag: readable and writable by the end-user via the SDK. Part of the 8 KB combined metadata budget.</value>
         /*
         <example>{onboardingStep&#x3D;2}</example>
         */
