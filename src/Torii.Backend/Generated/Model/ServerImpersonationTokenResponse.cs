@@ -40,9 +40,10 @@ namespace Torii.Backend.Generated.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerImpersonationTokenResponse" /> class.
         /// </summary>
-        /// <param name="token">The single-use token. Redeem via POST /_torii/auth/session/impersonate. (required).</param>
+        /// <param name="token">The single-use token. Redeem via POST /_torii/auth/session/impersonate, or hand the ready-to-use &#x60;url&#x60; to an operator. (required).</param>
         /// <param name="expiresInSeconds">The token&#39;s lifetime in seconds (the resolved value after any override). (required).</param>
-        public ServerImpersonationTokenResponse(string token = default, long expiresInSeconds = default)
+        /// <param name="url">A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved (no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin) — redeem the &#x60;token&#x60; via POST instead..</param>
+        public ServerImpersonationTokenResponse(string token = default, long expiresInSeconds = default, string url = default)
         {
             // to ensure "token" is required (not null)
             if (token == null)
@@ -51,12 +52,13 @@ namespace Torii.Backend.Generated.Model
             }
             this.Token = token;
             this.ExpiresInSeconds = expiresInSeconds;
+            this.Url = url;
         }
 
         /// <summary>
-        /// The single-use token. Redeem via POST /_torii/auth/session/impersonate.
+        /// The single-use token. Redeem via POST /_torii/auth/session/impersonate, or hand the ready-to-use &#x60;url&#x60; to an operator.
         /// </summary>
-        /// <value>The single-use token. Redeem via POST /_torii/auth/session/impersonate.</value>
+        /// <value>The single-use token. Redeem via POST /_torii/auth/session/impersonate, or hand the ready-to-use &#x60;url&#x60; to an operator.</value>
         [DataMember(Name = "token", IsRequired = true, EmitDefaultValue = true)]
         public string Token { get; set; }
 
@@ -65,10 +67,20 @@ namespace Torii.Backend.Generated.Model
         /// </summary>
         /// <value>The token&#39;s lifetime in seconds (the resolved value after any override).</value>
         /*
-        <example>60</example>
+        <example>600</example>
         */
         [DataMember(Name = "expiresInSeconds", IsRequired = true, EmitDefaultValue = true)]
         public long ExpiresInSeconds { get; set; }
+
+        /// <summary>
+        /// A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved (no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin) — redeem the &#x60;token&#x60; via POST instead.
+        /// </summary>
+        /// <value>A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved (no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin) — redeem the &#x60;token&#x60; via POST instead.</value>
+        /*
+        <example>https://auth.example.com/_torii/auth/session/impersonate?token&#x3D;…</example>
+        */
+        [DataMember(Name = "url", EmitDefaultValue = true)]
+        public string Url { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,6 +92,7 @@ namespace Torii.Backend.Generated.Model
             sb.Append("class ServerImpersonationTokenResponse {\n");
             sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("  ExpiresInSeconds: ").Append(ExpiresInSeconds).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
