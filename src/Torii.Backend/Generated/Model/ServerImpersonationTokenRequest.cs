@@ -42,8 +42,9 @@ namespace Torii.Backend.Generated.Model
         /// </summary>
         /// <param name="actorUserId">The principal the impersonation is on behalf of (recorded for accountability). Must be a user in this environment. (required).</param>
         /// <param name="reason">Mandatory justification (GDPR purpose limitation); recorded in the audit log on mint and redeem. (required).</param>
-        /// <param name="expiresInSeconds">Optional token lifetime in seconds, 60..600. Omit for the 60s default..</param>
-        public ServerImpersonationTokenRequest(Guid actorUserId = default, string reason = default, long? expiresInSeconds = default)
+        /// <param name="redirectUrl">Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Omit to default to the environment&#39;s first non-wildcard allowed origin..</param>
+        /// <param name="expiresInSeconds">Optional token lifetime in seconds, 60..600. Omit for the 600s default..</param>
+        public ServerImpersonationTokenRequest(Guid actorUserId = default, string reason = default, string redirectUrl = default, long? expiresInSeconds = default)
         {
             this.ActorUserId = actorUserId;
             // to ensure "reason" is required (not null)
@@ -52,6 +53,7 @@ namespace Torii.Backend.Generated.Model
                 throw new ArgumentNullException("reason is a required property for ServerImpersonationTokenRequest and cannot be null");
             }
             this.Reason = reason;
+            this.RedirectUrl = redirectUrl;
             this.ExpiresInSeconds = expiresInSeconds;
         }
 
@@ -76,11 +78,21 @@ namespace Torii.Backend.Generated.Model
         public string Reason { get; set; }
 
         /// <summary>
-        /// Optional token lifetime in seconds, 60..600. Omit for the 60s default.
+        /// Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Omit to default to the environment&#39;s first non-wildcard allowed origin.
         /// </summary>
-        /// <value>Optional token lifetime in seconds, 60..600. Omit for the 60s default.</value>
+        /// <value>Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Omit to default to the environment&#39;s first non-wildcard allowed origin.</value>
         /*
-        <example>120</example>
+        <example>https://app.example.com/dashboard</example>
+        */
+        [DataMember(Name = "redirectUrl", EmitDefaultValue = true)]
+        public string RedirectUrl { get; set; }
+
+        /// <summary>
+        /// Optional token lifetime in seconds, 60..600. Omit for the 600s default.
+        /// </summary>
+        /// <value>Optional token lifetime in seconds, 60..600. Omit for the 600s default.</value>
+        /*
+        <example>600</example>
         */
         [DataMember(Name = "expiresInSeconds", EmitDefaultValue = true)]
         public long? ExpiresInSeconds { get; set; }
@@ -95,6 +107,7 @@ namespace Torii.Backend.Generated.Model
             sb.Append("class ServerImpersonationTokenRequest {\n");
             sb.Append("  ActorUserId: ").Append(ActorUserId).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("  ExpiresInSeconds: ").Append(ExpiresInSeconds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
