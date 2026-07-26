@@ -48,7 +48,7 @@ namespace Torii.Backend.Generated.Model
         /// <param name="createdAt">When this session was created (ISO-8601 UTC). (required).</param>
         /// <param name="expiresAt">When this session expires (ISO-8601 UTC). (required).</param>
         /// <param name="lastUsedAt">When this session was last seen by the API (ISO-8601 UTC). (required).</param>
-        /// <param name="activeOrganizationId">Active organization pinned to this session (&#x60;org_id&#x60; claim on re-mint)..</param>
+        /// <param name="activeOrganizationId">Active organization pinned to this session (the &#x60;o&#x60; claim on re-mint)..</param>
         /// <param name="impersonatedBy">Platform user behind this session when it was established via impersonation; null for normal sign-ins..</param>
         public UserSessionResponse(Guid id = default, Guid userId = default, Guid environmentId = default, string userAgent = default, string ipAddress = default, DateTimeOffset createdAt = default, DateTimeOffset expiresAt = default, DateTimeOffset lastUsedAt = default, Guid? activeOrganizationId = default, Guid? impersonatedBy = default)
         {
@@ -145,9 +145,9 @@ namespace Torii.Backend.Generated.Model
         public DateTimeOffset LastUsedAt { get; set; }
 
         /// <summary>
-        /// Active organization pinned to this session (&#x60;org_id&#x60; claim on re-mint).
+        /// Active organization pinned to this session (the &#x60;o&#x60; claim on re-mint).
         /// </summary>
-        /// <value>Active organization pinned to this session (&#x60;org_id&#x60; claim on re-mint).</value>
+        /// <value>Active organization pinned to this session (the &#x60;o&#x60; claim on re-mint).</value>
         [DataMember(Name = "activeOrganizationId", EmitDefaultValue = true)]
         public Guid? ActiveOrganizationId { get; set; }
 
