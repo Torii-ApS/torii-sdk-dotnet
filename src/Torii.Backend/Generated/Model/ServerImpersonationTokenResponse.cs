@@ -42,7 +42,7 @@ namespace Torii.Backend.Generated.Model
         /// </summary>
         /// <param name="token">The single-use token. Redeem via POST /_torii/auth/session/impersonate, or hand the ready-to-use &#x60;url&#x60; to an operator. (required).</param>
         /// <param name="expiresInSeconds">The token&#39;s lifetime in seconds (the resolved value after any override). (required).</param>
-        /// <param name="url">A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved (no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin) — redeem the &#x60;token&#x60; via POST instead..</param>
+        /// <param name="url">A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved: no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin other than the hosted portal&#39;s own — redeem the &#x60;token&#x60; via POST instead..</param>
         public ServerImpersonationTokenResponse(string token = default, long expiresInSeconds = default, string url = default)
         {
             // to ensure "token" is required (not null)
@@ -73,9 +73,9 @@ namespace Torii.Backend.Generated.Model
         public long ExpiresInSeconds { get; set; }
 
         /// <summary>
-        /// A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved (no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin) — redeem the &#x60;token&#x60; via POST instead.
+        /// A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved: no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin other than the hosted portal&#39;s own — redeem the &#x60;token&#x60; via POST instead.
         /// </summary>
-        /// <value>A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved (no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin) — redeem the &#x60;token&#x60; via POST instead.</value>
+        /// <value>A ready-to-use, navigable redeem link on the environment&#39;s Frontend API host. Opening it in a browser establishes the impersonated session and redirects to the landing URL. Backed by the same single-use token. Null when no landing URL could be resolved: no &#x60;redirectUrl&#x60; given and the environment has no concrete allowed origin other than the hosted portal&#39;s own — redeem the &#x60;token&#x60; via POST instead.</value>
         /*
         <example>https://auth.example.com/_torii/auth/session/impersonate?token&#x3D;…</example>
         */

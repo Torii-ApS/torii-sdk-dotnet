@@ -112,6 +112,31 @@ namespace Torii.Backend.Generated.Api
         /// <returns>ApiResponse of ServerUserResponse</returns>
         ApiResponse<ServerUserResponse> GetUserWithHttpInfo(Guid userId);
         /// <summary>
+        /// List a user&#39;s organizations
+        /// </summary>
+        /// <remarks>
+        /// Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </remarks>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <returns>CursorPageResponseServerUserOrganizationResponse</returns>
+        CursorPageResponseServerUserOrganizationResponse ListUserOrganizations(Guid userId, int? limit = default, Guid? cursor = default);
+
+        /// <summary>
+        /// List a user&#39;s organizations
+        /// </summary>
+        /// <remarks>
+        /// Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </remarks>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <returns>ApiResponse of CursorPageResponseServerUserOrganizationResponse</returns>
+        ApiResponse<CursorPageResponseServerUserOrganizationResponse> ListUserOrganizationsWithHttpInfo(Guid userId, int? limit = default, Guid? cursor = default);
+        /// <summary>
         /// Search users
         /// </summary>
         /// <remarks>
@@ -304,6 +329,33 @@ namespace Torii.Backend.Generated.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ServerUserResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ServerUserResponse>> GetUserWithHttpInfoAsync(Guid userId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List a user&#39;s organizations
+        /// </summary>
+        /// <remarks>
+        /// Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </remarks>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CursorPageResponseServerUserOrganizationResponse</returns>
+        System.Threading.Tasks.Task<CursorPageResponseServerUserOrganizationResponse> ListUserOrganizationsAsync(Guid userId, int? limit = default, Guid? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List a user&#39;s organizations
+        /// </summary>
+        /// <remarks>
+        /// Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </remarks>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CursorPageResponseServerUserOrganizationResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CursorPageResponseServerUserOrganizationResponse>> ListUserOrganizationsWithHttpInfoAsync(Guid userId, int? limit = default, Guid? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search users
         /// </summary>
@@ -1101,6 +1153,151 @@ namespace Torii.Backend.Generated.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetUser", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List a user&#39;s organizations Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </summary>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <returns>CursorPageResponseServerUserOrganizationResponse</returns>
+        public CursorPageResponseServerUserOrganizationResponse ListUserOrganizations(Guid userId, int? limit = default, Guid? cursor = default)
+        {
+            Torii.Backend.Generated.Client.ApiResponse<CursorPageResponseServerUserOrganizationResponse> localVarResponse = ListUserOrganizationsWithHttpInfo(userId, limit, cursor);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List a user&#39;s organizations Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </summary>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <returns>ApiResponse of CursorPageResponseServerUserOrganizationResponse</returns>
+        public Torii.Backend.Generated.Client.ApiResponse<CursorPageResponseServerUserOrganizationResponse> ListUserOrganizationsWithHttpInfo(Guid userId, int? limit = default, Guid? cursor = default)
+        {
+            Torii.Backend.Generated.Client.RequestOptions localVarRequestOptions = new Torii.Backend.Generated.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json",
+                "application/problem+json"
+            };
+
+            var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Torii.Backend.Generated.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Torii.Backend.Generated.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CursorPageResponseServerUserOrganizationResponse>("/api/server/v1/users/{userId}/organizations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListUserOrganizations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List a user&#39;s organizations Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </summary>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CursorPageResponseServerUserOrganizationResponse</returns>
+        public async System.Threading.Tasks.Task<CursorPageResponseServerUserOrganizationResponse> ListUserOrganizationsAsync(Guid userId, int? limit = default, Guid? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Torii.Backend.Generated.Client.ApiResponse<CursorPageResponseServerUserOrganizationResponse> localVarResponse = await ListUserOrganizationsWithHttpInfoAsync(userId, limit, cursor, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List a user&#39;s organizations Returns a cursor-paginated page of the organizations this user is a member of, with the user&#39;s role in each and that membership&#39;s metadata bags. The mirror image of listing an organization&#39;s members. Note the bags are the MEMBERSHIP&#39;s, not the organization&#39;s: read the organization itself for those.
+        /// </summary>
+        /// <exception cref="Torii.Backend.Generated.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userId">Identifier of the user whose organizations to list.</param>
+        /// <param name="limit">Maximum number of items in the returned page (default 20). (optional, default to 20)</param>
+        /// <param name="cursor">Opaque cursor returned by the previous page&#39;s &#x60;nextCursor&#x60;. Omit to fetch the first page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CursorPageResponseServerUserOrganizationResponse)</returns>
+        public async System.Threading.Tasks.Task<Torii.Backend.Generated.Client.ApiResponse<CursorPageResponseServerUserOrganizationResponse>> ListUserOrganizationsWithHttpInfoAsync(Guid userId, int? limit = default, Guid? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Torii.Backend.Generated.Client.RequestOptions localVarRequestOptions = new Torii.Backend.Generated.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json",
+                "application/problem+json"
+            };
+
+
+            var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("userId", Torii.Backend.Generated.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Torii.Backend.Generated.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Torii.Backend.Generated.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CursorPageResponseServerUserOrganizationResponse>("/api/server/v1/users/{userId}/organizations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListUserOrganizations", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
