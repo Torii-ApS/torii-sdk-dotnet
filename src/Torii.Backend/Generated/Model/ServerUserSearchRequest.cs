@@ -67,7 +67,8 @@ namespace Torii.Backend.Generated.Model
         /// <param name="statuses">Filter by user status. Returns users matching any of the supplied statuses..</param>
         /// <param name="createdAfter">Only return users created at or after this instant (ISO-8601 UTC)..</param>
         /// <param name="createdBefore">Only return users created at or before this instant (ISO-8601 UTC)..</param>
-        public ServerUserSearchRequest(string name = default, List<Guid> userIds = default, List<string> emailAddresses = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default)
+        /// <param name="organizationId">Only return members of this organization. An organization from another environment matches nobody. Not an id-selector: it is applied as a membership semi-join, so it is never capped and always ANDs with the rest of the filters..</param>
+        public ServerUserSearchRequest(string name = default, List<Guid> userIds = default, List<string> emailAddresses = default, string email = default, List<StatusesEnum> statuses = default, DateTimeOffset? createdAfter = default, DateTimeOffset? createdBefore = default, Guid? organizationId = default)
         {
             this.Name = name;
             this.UserIds = userIds;
@@ -76,6 +77,7 @@ namespace Torii.Backend.Generated.Model
             this.Statuses = statuses;
             this.CreatedAfter = createdAfter;
             this.CreatedBefore = createdBefore;
+            this.OrganizationId = organizationId;
         }
 
         /// <summary>
@@ -146,6 +148,16 @@ namespace Torii.Backend.Generated.Model
         public DateTimeOffset? CreatedBefore { get; set; }
 
         /// <summary>
+        /// Only return members of this organization. An organization from another environment matches nobody. Not an id-selector: it is applied as a membership semi-join, so it is never capped and always ANDs with the rest of the filters.
+        /// </summary>
+        /// <value>Only return members of this organization. An organization from another environment matches nobody. Not an id-selector: it is applied as a membership semi-join, so it is never capped and always ANDs with the rest of the filters.</value>
+        /*
+        <example>01931a73-8b00-7000-8000-000000000000</example>
+        */
+        [DataMember(Name = "organizationId", EmitDefaultValue = true)]
+        public Guid? OrganizationId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -160,6 +172,7 @@ namespace Torii.Backend.Generated.Model
             sb.Append("  Statuses: ").Append(Statuses).Append("\n");
             sb.Append("  CreatedAfter: ").Append(CreatedAfter).Append("\n");
             sb.Append("  CreatedBefore: ").Append(CreatedBefore).Append("\n");
+            sb.Append("  OrganizationId: ").Append(OrganizationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
