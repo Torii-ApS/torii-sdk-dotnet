@@ -498,7 +498,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
             var localVarContentType = Torii.Backend.Generated.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
@@ -563,7 +564,8 @@ namespace Torii.Backend.Generated.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/problem+json"
             };
 
 

@@ -118,7 +118,7 @@ namespace Torii.Backend.Generated.Client
         {
             Proxy = null;
             UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");
-            BasePath = "https://api.torii.so";
+            BasePath = "https://api.toriiauth.eu";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -126,7 +126,7 @@ namespace Torii.Backend.Generated.Client
             {
                 {
                     new Dictionary<string, object> {
-                        {"url", "https://api.torii.so"},
+                        {"url", "https://api.toriiauth.eu"},
                         {"description", "Production backend API"},
                     }
                 }
@@ -147,7 +147,7 @@ namespace Torii.Backend.Generated.Client
             IDictionary<string, string> defaultHeaders,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "https://api.torii.so") : this()
+            string basePath = "https://api.toriiauth.eu") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");
