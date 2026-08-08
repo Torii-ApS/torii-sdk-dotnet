@@ -42,7 +42,7 @@ namespace Torii.Backend.Generated.Model
         /// </summary>
         /// <param name="actorUserId">The principal the impersonation is on behalf of (recorded for accountability). Must be a user in this environment. (required).</param>
         /// <param name="reason">Mandatory justification (GDPR purpose limitation); recorded in the audit log on mint and redeem. (required).</param>
-        /// <param name="redirectUrl">Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Omit to default to the environment&#39;s first non-wildcard allowed origin..</param>
+        /// <param name="redirectUrl">Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Unlike the dashboard link this plane appends nothing to it, so a fragment is fine. Omit to use the environment&#39;s configured impersonation landing URL..</param>
         /// <param name="expiresInSeconds">Optional token lifetime in seconds, 60..600. Omit for the 600s default..</param>
         public ServerImpersonationTokenRequest(Guid actorUserId = default, string reason = default, string redirectUrl = default, long? expiresInSeconds = default)
         {
@@ -78,9 +78,9 @@ namespace Torii.Backend.Generated.Model
         public string Reason { get; set; }
 
         /// <summary>
-        /// Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Omit to default to the environment&#39;s first non-wildcard allowed origin.
+        /// Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Unlike the dashboard link this plane appends nothing to it, so a fragment is fine. Omit to use the environment&#39;s configured impersonation landing URL.
         /// </summary>
-        /// <value>Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Omit to default to the environment&#39;s first non-wildcard allowed origin.</value>
+        /// <value>Optional post-redeem landing URL for the &#x60;url&#x60; redeem link; its origin must be in the environment&#39;s allowed origins. Unlike the dashboard link this plane appends nothing to it, so a fragment is fine. Omit to use the environment&#39;s configured impersonation landing URL.</value>
         /*
         <example>https://app.example.com/dashboard</example>
         */
